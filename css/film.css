@@ -1,8 +1,8 @@
 /* film player (modal) */
 .filmbox { position: fixed; inset: 0; z-index: 80; background: rgba(27,31,39,.55); display: grid; place-items: center; animation: fadeIn .3s both; }
-.filmbox .fb { position: relative; width: min(1280px, 92vw); background: #111; border-radius: 6px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.5); overflow: hidden; }
-.filmbox video { display: block; width: 100%; height: auto; background: #ECE9E1; }
-.filmbox .close { position: absolute; top: -40px; right: 0; border: 0; background: none; color: #fff; font-size: 15px; opacity: .85; }
+.filmbox .fb { position: relative; width: min(1280px, 92vw); border-radius: 6px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.5); }
+.filmbox video { display: block; width: 100%; height: auto; background: #ECE9E1; border-radius: 6px; }
+.filmbox .close { position: absolute; top: -38px; right: 0; border: 0; background: none; color: #fff; font-size: 15px; opacity: .9; padding: 6px 2px; }
 .filmbox .close:hover { opacity: 1; }
 .filmlink { display: inline-flex; align-items: center; gap: 8px; border: 0; background: none; padding: 0; color: var(--navy); font-size: 14px; }
 .filmlink i { width: 22px; height: 22px; border-radius: 50%; border: 1.2px solid var(--navy); display: inline-grid; place-items: center; }
