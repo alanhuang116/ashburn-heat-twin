@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ashburn Heat Twin</title>
+<meta name="description" content="A physics-based digital twin of data-center heat in Ashburn, Virginia: a lattice-Boltzmann solver over real terrain and buildings, checked against Landsat, with a live WebGPU solver in the browser.">
+<meta name="theme-color" content="#ECE9E1">
+<meta property="og:title" content="Ashburn Heat Twin">
+<meta property="og:description" content="Where the heat of Data Center Alley goes: a lattice-Boltzmann digital twin of a 6 × 6 km block of Loudoun County, Virginia.">
+<meta property="og:image" content="img/preview.jpg">
+<link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Newsreader-normal-300_600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/SourceSans3-normal-300_700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/film.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }</script>
+</head>
+<body class="mode-story">
+<canvas id="gl" aria-label="3-D model of the study area"></canvas>
+<div id="labels" aria-hidden="true"></div>
+
+<header class="masthead">
+  <a class="brand" href="./" aria-label="Ashburn Heat Twin, start page">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 24 L16 17 L29 24 L16 31 Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 24 V21 L16 14 L29 21 V24" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 13 C 11 9, 15 8, 14 4 M17 13 C 16 9.5, 20 8.5, 19 5" fill="none" stroke="#B07A00" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <span><b>Ashburn Heat Twin</b><i>Where the heat of Data Center Alley goes</i></span>
+  </a>
+  <nav class="modes" aria-label="Mode">
+    <button data-mode="story" aria-pressed="true">Story</button>
+    <button data-mode="explore" aria-pressed="false">Explore</button>
+    <button data-mode="live" aria-pressed="false">Live solver</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button data-mode="about" class="about">About the model</button>
+  </nav>
+</header>
+
+<aside id="rail" class="rail" aria-live="polite"></aside>
+
+<div id="timeline" class="timeline" hidden>
+  <button class="play" aria-label="Play"><svg viewBox="0 0 20 20"><path class="i-play" d="M7 5 L15 10 L7 15 Z"/><g class="i-pause"><rect x="6" y="5" width="2.6" height="10"/><rect x="11.4" y="5" width="2.6" height="10"/></g></svg></button>
+  <div class="track"><input type="range" min="0" max="1000" value="0" step="1" aria-label="Time after switch-on"><div class="ticks"></div></div>
+  <div class="readout"><b>0</b><span>min after the heat is switched on</span></div>
+</div>
+
+<div id="legend" class="legend" hidden></div>
+<div id="mapkey" class="mapkey" aria-hidden="true">
+  <svg class="north" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15.5" fill="rgba(251,250,246,.9)" stroke="rgba(27,31,39,.25)"/><g class="rot"><path d="M20 7.5 L23.2 20 L16.8 20 Z" fill="#1B1F27"/><path d="M20 32.5 L23.2 20 L16.8 20 Z" fill="none" stroke="#1B1F27" stroke-width=".9"/><text x="20" y="6" text-anchor="middle">N</text></g></svg>
+  <div class="bar"><i></i><span>1 km</span></div>
+</div>
+<div id="probe" class="probe" hidden></div>
+<div id="tip" class="tip" hidden></div>
+<div id="toast" class="toast" hidden></div>
+
+<section id="about" class="sheet" hidden aria-label="About the model"></section>
+<div id="film" class="filmbox" hidden><div class="fb"><button class="close" aria-label="Close the film">Close ×</button><video controls playsinline preload="none" poster="media/film_poster.jpg"><source src="media/ashburn-heat-twin.mp4" type="video/mp4"></video></div></div>
+
+<div id="loader" class="loader">
+  <div class="lcard">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 24 L16 17 L29 24 L16 31 Z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M3 24 V21 L16 14 L29 21 V24" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 13 C 11 9, 15 8, 14 4 M17 13 C 16 9.5, 20 8.5, 19 5" fill="none" stroke="#B07A00" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <h1>Ashburn Heat Twin</h1>
+    <p class="lmsg">Building the model…</p>
+    <div class="lbar"><i></i></div>
+  </div>
+  <noscript><p>This page needs JavaScript and WebGL 2.</p></noscript>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

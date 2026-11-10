@@ -1,0 +1,5138 @@
+{
+ "p30a": {
+  "domain_report": {
+   "tag": "p30a",
+   "dx": 30,
+   "zbase_js": 31,
+   "zbase_mirror": 31,
+   "kt_equal": true,
+   "ktop_equal": true,
+   "ktop_mismatch": 0,
+   "cd_max_rel": 0.0,
+   "kt_range": [
+    1,
+    2
+   ],
+   "ktop_max": 3,
+   "building_columns": 42,
+   "nz": 24,
+   "note": "no campuses in this dump",
+   "mirror_10m_vs_lbm3d_build_domain": {
+    "zbase": [
+     50.0,
+     50.0
+    ],
+    "kt_equal": true,
+    "nb_mismatch": 0,
+    "cd_max_rel": 0.0
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "p30a",
+   "steps": 300,
+   "pre": 0,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 16,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "params": {
+    "tau0": 0.5001711249351501,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 7.109877333277836e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.0001425955560989678,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.0042778667993843555,
+    "nsp": 4,
+    "nsw": 16,
+    "oclip": 0
+   },
+   "thetaMax": 0.6957224011421204,
+   "heatMW": 742.608,
+   "surfMax": 0.6957224011421204,
+   "surfMean": 0.02928561102505986,
+   "windMean": 1.2299589708466077,
+   "nan": 0,
+   "campusInfo": []
+  },
+  "short_report": {
+   "tag": "p30a",
+   "steps": 300,
+   "pre": 0,
+   "nsw_reference": 16,
+   "nsw_webgpu": 16,
+   "oclip_reference": false,
+   "oclip_webgpu": false,
+   "grid": [
+    200,
+    200,
+    24
+   ],
+   "dx": 30,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 893655,
+   "init_state_vs_lbm3d": {
+    "max_abs": 0.0,
+    "max_ulp": 0.0,
+    "frac_bit_identical": 1.0
+   },
+   "ref_wall_s": 7.52112078666687,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 2.8334428228657227e-06,
+     "max_abs": 3.2186508178710938e-06,
+     "ref_absmax": 0.6937481164932251
+    },
+    "ux": {
+     "rel_l2": 5.2126610549215046e-06,
+     "max_abs": 6.905756890773773e-07,
+     "ref_absmax": 0.025842124596238136
+    },
+    "uy": {
+     "rel_l2": 3.142463124075186e-06,
+     "max_abs": 7.525086402893066e-07,
+     "ref_absmax": 0.03963617607951164
+    },
+    "uz": {
+     "rel_l2": 0.00010720996215568197,
+     "max_abs": 6.939517334103584e-07,
+     "ref_absmax": 0.012427621521055698,
+     "rms_err_over_rms_speed": 2.1240300949279466e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 2.9344336226046235e-07,
+    "max_abs": 7.748603820800781e-07,
+    "ref_absmax": 0.33774587512016296
+   },
+   "state_g": {
+    "rel_l2": 3.0858377202854643e-06,
+    "max_abs": 9.164214134216309e-07,
+    "ref_absmax": 0.17389589548110962
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 2.583251095839851e-06,
+     "max_abs": 3.2186508178710938e-06,
+     "ref_absmax": 0.6957204937934875
+    },
+    "u": {
+     "rel_l2": 2.0864586435851447e-05,
+     "max_abs": 7.718801498413086e-05,
+     "ref_absmax": 2.01065993309021
+    },
+    "v": {
+     "rel_l2": 9.771717848388522e-06,
+     "max_abs": 8.690357208251953e-05,
+     "ref_absmax": 2.7840869426727295
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 1.0,
+    "max_diff": 0,
+    "nonzero": 22714
+   },
+   "theta_max_ref": 0.6957204937934875,
+   "theta_max_webgpu_read": 0.6957224011421204,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "p30b": {
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "p30b",
+   "steps": 300,
+   "pre": 2000,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "params": {
+    "tau0": 0.5001711249351501,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 7.109877333277836e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.0001425955560989678,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.0042778667993843555,
+    "nsp": 4,
+    "nsw": 5,
+    "oclip": 1
+   },
+   "thetaMax": 2.6861085891723633,
+   "heatMW": 862.6080000000002,
+   "surfMax": 2.6861085891723633,
+   "surfMean": 0.12487837492449785,
+   "windMean": 1.0034825667754157,
+   "nan": 0,
+   "campusInfo": [
+    {
+     "id": "A",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 195
+    }
+   ]
+  },
+  "short_report": {
+   "tag": "p30b",
+   "steps": 300,
+   "pre": 2000,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "grid": [
+    200,
+    200,
+    24
+   ],
+   "dx": 30,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 893655,
+   "ref_wall_s": 8.169030666351318,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 3.2172651326786973e-06,
+     "max_abs": 2.0503997802734375e-05,
+     "ref_absmax": 2.686023473739624
+    },
+    "ux": {
+     "rel_l2": 1.1099870634254547e-05,
+     "max_abs": 1.755819539539516e-06,
+     "ref_absmax": 0.025585701689124107
+    },
+    "uy": {
+     "rel_l2": 7.232136395075439e-06,
+     "max_abs": 1.4677643775939941e-06,
+     "ref_absmax": 0.039580412209033966
+    },
+    "uz": {
+     "rel_l2": 0.00020847992175461311,
+     "max_abs": 1.4914257917553186e-06,
+     "ref_absmax": 0.012412451207637787,
+     "rms_err_over_rms_speed": 3.1749495298829275e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 4.0572058046316973e-07,
+    "max_abs": 9.238719940185547e-07,
+    "ref_absmax": 0.3377658724784851
+   },
+   "state_g": {
+    "rel_l2": 3.4394502400502326e-06,
+    "max_abs": 5.0067901611328125e-06,
+    "ref_absmax": 0.6719538569450378
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 3.2709907060854716e-06,
+     "max_abs": 2.002716064453125e-05,
+     "ref_absmax": 2.686126470565796
+    },
+    "u": {
+     "rel_l2": 2.6789657947145297e-05,
+     "max_abs": 0.00021109730005264282,
+     "ref_absmax": 1.9859366416931152
+    },
+    "v": {
+     "rel_l2": 2.3783800552770402e-05,
+     "max_abs": 0.0001525282859802246,
+     "ref_absmax": 2.792901039123535
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999928571428571,
+    "max_diff": 1,
+    "nonzero": 201288
+   },
+   "theta_max_ref": 2.686126470565796,
+   "theta_max_webgpu_read": 2.6861085891723633,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  },
+  "short_unmod_report": {
+   "tag": "p30b",
+   "steps": 300,
+   "pre": 2000,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "oclip_reference": false,
+   "oclip_webgpu": true,
+   "grid": [
+    200,
+    200,
+    24
+   ],
+   "dx": 30,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 893655,
+   "ref_wall_s": 7.33069634437561,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 5.386442147046748e-06,
+     "max_abs": 3.0606985092163086e-05,
+     "ref_absmax": 2.686025857925415
+    },
+    "ux": {
+     "rel_l2": 8.817766454639451e-05,
+     "max_abs": 0.00015259955398505554,
+     "ref_absmax": 0.02558569610118866
+    },
+    "uy": {
+     "rel_l2": 8.783634245509455e-05,
+     "max_abs": 0.00045403471449390054,
+     "ref_absmax": 0.03958040103316307
+    },
+    "uz": {
+     "rel_l2": 0.0030973545840498303,
+     "max_abs": 0.0002133421367034316,
+     "ref_absmax": 0.012412458658218384,
+     "rms_err_over_rms_speed": 4.718785579135514e-05
+    }
+   },
+   "state_f": {
+    "rel_l2": 3.502233173728559e-06,
+    "max_abs": 9.414553642272949e-05,
+    "ref_absmax": 0.3377658724784851
+   },
+   "state_g": {
+    "rel_l2": 5.6305572651013714e-06,
+    "max_abs": 7.681548595428467e-06,
+    "ref_absmax": 0.671954333782196
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 5.1241169501791785e-06,
+     "max_abs": 3.078579902648926e-05,
+     "ref_absmax": 2.686129093170166
+    },
+    "u": {
+     "rel_l2": 0.00039478939969622435,
+     "max_abs": 0.01783688087016344,
+     "ref_absmax": 1.9859368801116943
+    },
+    "v": {
+     "rel_l2": 0.0005997410470271965,
+     "max_abs": 0.053001269698143005,
+     "ref_absmax": 2.792898654937744
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999839285714286,
+    "max_diff": 1,
+    "nonzero": 201288
+   },
+   "theta_max_ref": 2.686129093170166,
+   "theta_max_webgpu_read": 2.6861085891723633,
+   "pass_rel_l2_lt_1e-4": false,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "p20": {
+  "domain_report": {
+   "tag": "p20",
+   "dx": 20,
+   "zbase_js": 41,
+   "zbase_mirror": 41,
+   "kt_equal": true,
+   "ktop_equal": false,
+   "ktop_mismatch": 828,
+   "cd_max_rel": 0.0,
+   "kt_range": [
+    1,
+    3
+   ],
+   "ktop_max": 4,
+   "building_columns": 5390,
+   "nz": 36,
+   "note": "campus-free columns only if the dump had campuses",
+   "mirror_10m_vs_lbm3d_build_domain": {
+    "zbase": [
+     50.0,
+     50.0
+    ],
+    "kt_equal": true,
+    "nb_mismatch": 0,
+    "cd_max_rel": 0.0
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "p20",
+   "steps": 300,
+   "pre": 1500,
+   "info": {
+    "nx": 300,
+    "ny": 300,
+    "nz": 36,
+    "nzv": 21,
+    "dx": 20,
+    "dt": 0.17111466540582318,
+    "zbase": 41,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 6,
+    "nsw": 8,
+    "nCells": 3240000,
+    "nFluid": 3061994,
+    "top": 761
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "params": {
+    "tau0": 0.5002566576004028,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 4.739918222185224e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.00021389333414845169,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.002851911121979356,
+    "nsp": 6,
+    "nsw": 8,
+    "oclip": 1
+   },
+   "thetaMax": 2.5462186336517334,
+   "heatMW": 982.6079999999938,
+   "surfMax": 2.5462186336517334,
+   "surfMean": 0.09358570183555508,
+   "windMean": 0.8364857639136708,
+   "nan": 0,
+   "campusInfo": [
+    {
+     "id": "A",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 420
+    },
+    {
+     "id": "B",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 420
+    }
+   ]
+  },
+  "short_report": {
+   "tag": "p20",
+   "steps": 300,
+   "pre": 1500,
+   "nsw_reference": 8,
+   "nsw_webgpu": 8,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "grid": [
+    300,
+    300,
+    36
+   ],
+   "dx": 20,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 3061994,
+   "ref_wall_s": 9.300114870071411,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 2.851785943501141e-06,
+     "max_abs": 1.8358230590820312e-05,
+     "ref_absmax": 2.5458929538726807
+    },
+    "ux": {
+     "rel_l2": 9.172373710175488e-06,
+     "max_abs": 2.75392085313797e-06,
+     "ref_absmax": 0.02432856336236
+    },
+    "uy": {
+     "rel_l2": 6.042994952729014e-06,
+     "max_abs": 1.7476268112659454e-06,
+     "ref_absmax": 0.03680037334561348
+    },
+    "uz": {
+     "rel_l2": 0.00021808325211949641,
+     "max_abs": 1.5307450667023659e-06,
+     "ref_absmax": 0.010402625426650047,
+     "rms_err_over_rms_speed": 3.2128370990759754e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 3.468848370095089e-07,
+    "max_abs": 1.043081283569336e-06,
+    "ref_absmax": 0.33788275718688965
+   },
+   "state_g": {
+    "rel_l2": 3.0055993136972394e-06,
+    "max_abs": 4.76837158203125e-06,
+    "ref_absmax": 0.6372498869895935
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 3.1270910991361005e-06,
+     "max_abs": 1.9073486328125e-05,
+     "ref_absmax": 2.546233892440796
+    },
+    "u": {
+     "rel_l2": 3.520325293765814e-05,
+     "max_abs": 0.00032401084899902344,
+     "ref_absmax": 1.9102065563201904
+    },
+    "v": {
+     "rel_l2": 2.587053772732044e-05,
+     "max_abs": 0.00020587444305419922,
+     "ref_absmax": 2.890225648880005
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999957671957672,
+    "max_diff": 1,
+    "nonzero": 410380
+   },
+   "theta_max_ref": 2.546233892440796,
+   "theta_max_webgpu_read": 2.5462186336517334,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "p40": {
+  "domain_report": {
+   "tag": "p40",
+   "dx": 40,
+   "zbase_js": 21,
+   "zbase_mirror": 21,
+   "kt_equal": true,
+   "ktop_equal": true,
+   "ktop_mismatch": 0,
+   "cd_max_rel": 0.0,
+   "kt_range": [
+    1,
+    2
+   ],
+   "ktop_max": 2,
+   "building_columns": 3,
+   "nz": 18,
+   "note": "campus-free columns only if the dump had campuses",
+   "mirror_10m_vs_lbm3d_build_domain": {
+    "zbase": [
+     50.0,
+     50.0
+    ],
+    "kt_equal": true,
+    "nb_mismatch": 0,
+    "cd_max_rel": 0.0
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "p40",
+   "steps": 500,
+   "pre": 1000,
+   "info": {
+    "nx": 150,
+    "ny": 150,
+    "nz": 18,
+    "nzv": 11,
+    "dx": 40,
+    "dt": 0.34222933081164636,
+    "zbase": 21,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 3,
+    "nsw": 4,
+    "nCells": 405000,
+    "nFluid": 373198,
+    "top": 741
+   },
+   "inflow": {
+    "w": 0,
+    "e": 1,
+    "s": 0,
+    "n": 1
+   },
+   "params": {
+    "tau0": 0.5001283288002014,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 9.479836444370449e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.00010694666707422584,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.005703822243958712,
+    "nsp": 3,
+    "nsw": 4,
+    "oclip": 1
+   },
+   "thetaMax": 1.2921146154403687,
+   "heatMW": 862.6079999999993,
+   "surfMax": 1.2921146154403687,
+   "surfMean": 0.08276232371113192,
+   "windMean": 1.8349117002971405,
+   "nan": 0,
+   "campusInfo": [
+    {
+     "id": "C",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 132
+    }
+   ]
+  },
+  "short_report": {
+   "tag": "p40",
+   "steps": 500,
+   "pre": 1000,
+   "nsw_reference": 4,
+   "nsw_webgpu": 4,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "grid": [
+    150,
+    150,
+    18
+   ],
+   "dx": 40,
+   "inflow": {
+    "w": 0,
+    "e": 1,
+    "s": 0,
+    "n": 1
+   },
+   "fluid_cells": 373198,
+   "ref_wall_s": 8.443397998809814,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 3.5339929733198665e-06,
+     "max_abs": 5.4836273193359375e-06,
+     "ref_absmax": 1.2914190292358398
+    },
+    "ux": {
+     "rel_l2": 3.0941396369939245e-06,
+     "max_abs": 1.8542632460594177e-06,
+     "ref_absmax": 0.09053613990545273
+    },
+    "uy": {
+     "rel_l2": 5.891436951199928e-06,
+     "max_abs": 9.015202522277832e-07,
+     "ref_absmax": 0.030641520395874977
+    },
+    "uz": {
+     "rel_l2": 8.059846037566641e-05,
+     "max_abs": 1.172593329101801e-06,
+     "ref_absmax": 0.02778247743844986,
+     "rms_err_over_rms_speed": 1.5430960343331483e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 3.3230434591251253e-07,
+    "max_abs": 8.046627044677734e-07,
+    "ref_absmax": 0.34156978130340576
+   },
+   "state_g": {
+    "rel_l2": 3.6686553337235192e-06,
+    "max_abs": 1.4007091522216797e-06,
+    "ref_absmax": 0.32029807567596436
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 3.101881531779945e-06,
+     "max_abs": 5.9604644775390625e-06,
+     "ref_absmax": 1.2921110391616821
+    },
+    "u": {
+     "rel_l2": 1.2020373315757845e-05,
+     "max_abs": 0.0002168416976928711,
+     "ref_absmax": 6.594643592834473
+    },
+    "v": {
+     "rel_l2": 1.9986972611049728e-05,
+     "max_abs": 8.729100227355957e-05,
+     "ref_absmax": 2.531914472579956
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999959595959595,
+    "max_diff": 1,
+    "nonzero": 100185
+   },
+   "theta_max_ref": 1.2921110391616821,
+   "theta_max_webgpu_read": 1.2921146154403687,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "p40w": {
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "p40w",
+   "steps": 500,
+   "pre": 1500,
+   "info": {
+    "nx": 150,
+    "ny": 150,
+    "nz": 18,
+    "nzv": 11,
+    "dx": 40,
+    "dt": 0.34222933081164636,
+    "zbase": 21,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 1485.216,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 3,
+    "nsw": 4,
+    "nCells": 405000,
+    "nFluid": 373198,
+    "top": 741
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 0,
+    "n": 1
+   },
+   "params": {
+    "tau0": 0.5001283288002014,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 9.479836444370449e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.00010694666707422584,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.005703822243958712,
+    "nsp": 3,
+    "nsw": 4,
+    "oclip": 1
+   },
+   "thetaMax": 7.486924171447754,
+   "heatMW": 1725.216000000001,
+   "surfMax": 7.486924171447754,
+   "surfMean": 0.27592962883996,
+   "windMean": 0.369277280567335,
+   "nan": 0,
+   "campusInfo": [
+    {
+     "id": "A",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 132
+    },
+    {
+     "id": "B",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 132
+    }
+   ]
+  },
+  "short_report": {
+   "tag": "p40w",
+   "steps": 500,
+   "pre": 1500,
+   "nsw_reference": 4,
+   "nsw_webgpu": 4,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "grid": [
+    150,
+    150,
+    18
+   ],
+   "dx": 40,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 0,
+    "n": 1
+   },
+   "fluid_cells": 373198,
+   "ref_wall_s": 7.960021257400513,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 1.5619390678552992e-05,
+     "max_abs": 0.00016736984252929688,
+     "ref_absmax": 7.486918926239014
+    },
+    "ux": {
+     "rel_l2": 1.5248509551809183e-05,
+     "max_abs": 2.00001522898674e-06,
+     "ref_absmax": 0.02221939153969288
+    },
+    "uy": {
+     "rel_l2": 2.4312711336558847e-05,
+     "max_abs": 1.5331170288845897e-06,
+     "ref_absmax": 0.018774082884192467
+    },
+    "uz": {
+     "rel_l2": 0.00014705334701715,
+     "max_abs": 1.8343853298574686e-06,
+     "ref_absmax": 0.023688500747084618,
+     "rms_err_over_rms_speed": 1.547751875616355e-05
+    }
+   },
+   "state_f": {
+    "rel_l2": 7.054863606016495e-07,
+    "max_abs": 1.9371509552001953e-06,
+    "ref_absmax": 0.3350885510444641
+   },
+   "state_g": {
+    "rel_l2": 1.7041722916175058e-05,
+    "max_abs": 4.1991472244262695e-05,
+    "ref_absmax": 1.8725316524505615
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 9.572160349315293e-06,
+     "max_abs": 9.202957153320312e-05,
+     "ref_absmax": 7.486961841583252
+    },
+    "u": {
+     "rel_l2": 5.829273497387289e-05,
+     "max_abs": 0.00023724138736724854,
+     "ref_absmax": 1.003246545791626
+    },
+    "v": {
+     "rel_l2": 8.459444853486489e-05,
+     "max_abs": 0.000172443687915802,
+     "ref_absmax": 0.9993482232093811
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999232323232323,
+    "max_diff": 1,
+    "nonzero": 47293
+   },
+   "theta_max_ref": 7.486961841583252,
+   "theta_max_webgpu_read": 7.486924171447754,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  },
+  "short_unmod_report": {
+   "tag": "p40w",
+   "steps": 500,
+   "pre": 1500,
+   "nsw_reference": 4,
+   "nsw_webgpu": 4,
+   "oclip_reference": false,
+   "oclip_webgpu": true,
+   "grid": [
+    150,
+    150,
+    18
+   ],
+   "dx": 40,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 0,
+    "n": 1
+   },
+   "fluid_cells": 373198,
+   "ref_wall_s": 7.7368738651275635,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 0.003956539049102401,
+     "max_abs": 0.05545833706855774,
+     "ref_absmax": 7.486841201782227
+    },
+    "ux": {
+     "rel_l2": 0.0028123800944851595,
+     "max_abs": 0.0011400338262319565,
+     "ref_absmax": 0.022214042022824287
+    },
+    "uy": {
+     "rel_l2": 0.009452944219576249,
+     "max_abs": 0.003212535477359779,
+     "ref_absmax": 0.018755627796053886
+    },
+    "uz": {
+     "rel_l2": 0.025938363739394333,
+     "max_abs": 0.0009688539430499077,
+     "ref_absmax": 0.02368343062698841,
+     "rms_err_over_rms_speed": 0.0027415883505554827
+    }
+   },
+   "state_f": {
+    "rel_l2": 6.926193648672924e-05,
+    "max_abs": 0.0005614161491394043,
+    "ref_absmax": 0.3350924253463745
+   },
+   "state_g": {
+    "rel_l2": 0.004106043706453742,
+    "max_abs": 0.013882435858249664,
+    "ref_absmax": 1.8725111484527588
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 0.0022390591986866815,
+     "max_abs": 0.03337538242340088,
+     "ref_absmax": 7.486879825592041
+    },
+    "u": {
+     "rel_l2": 0.007245063786891393,
+     "max_abs": 0.05849698558449745,
+     "ref_absmax": 1.0010021924972534
+    },
+    "v": {
+     "rel_l2": 0.02333611304942885,
+     "max_abs": 0.12090687826275826,
+     "ref_absmax": 0.9983199834823608
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.986020202020202,
+    "max_diff": 5,
+    "nonzero": 47293
+   },
+   "theta_max_ref": 7.486879825592041,
+   "theta_max_webgpu_read": 7.486924171447754,
+   "pass_rel_l2_lt_1e-4": false,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "q30a": {
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "q30a",
+   "steps": 300,
+   "pre": 0,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 16,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "params": {
+    "tau0": 0.5001711249351501,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 7.109877333277836e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.0001425955560989678,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.0042778667993843555,
+    "nsp": 4,
+    "nsw": 16,
+    "oclip": 0
+   },
+   "thetaMax": 0.6957224011421204,
+   "heatMW": 742.608,
+   "surfMax": 0.6957224011421204,
+   "surfMean": 0.02928561102505986,
+   "windMean": 1.2299589708466077,
+   "nan": 0,
+   "campusInfo": []
+  },
+  "short_report": {
+   "tag": "q30a",
+   "steps": 300,
+   "pre": 0,
+   "nsw_reference": 16,
+   "nsw_webgpu": 16,
+   "oclip_reference": false,
+   "oclip_webgpu": false,
+   "grid": [
+    200,
+    200,
+    24
+   ],
+   "dx": 30,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 893655,
+   "init_state_vs_lbm3d": {
+    "max_abs": 0.0,
+    "max_ulp": 0.0,
+    "frac_bit_identical": 1.0
+   },
+   "ref_wall_s": 7.457793951034546,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 2.8334428228657227e-06,
+     "max_abs": 3.2186508178710938e-06,
+     "ref_absmax": 0.6937481164932251
+    },
+    "ux": {
+     "rel_l2": 5.2126610549215046e-06,
+     "max_abs": 6.905756890773773e-07,
+     "ref_absmax": 0.025842124596238136
+    },
+    "uy": {
+     "rel_l2": 3.142463124075186e-06,
+     "max_abs": 7.525086402893066e-07,
+     "ref_absmax": 0.03963617607951164
+    },
+    "uz": {
+     "rel_l2": 0.00010720996215568197,
+     "max_abs": 6.939517334103584e-07,
+     "ref_absmax": 0.012427621521055698,
+     "rms_err_over_rms_speed": 2.1240300949279466e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 2.9344336226046235e-07,
+    "max_abs": 7.748603820800781e-07,
+    "ref_absmax": 0.33774587512016296
+   },
+   "state_g": {
+    "rel_l2": 3.0858377202854643e-06,
+    "max_abs": 9.164214134216309e-07,
+    "ref_absmax": 0.17389589548110962
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 2.583251095839851e-06,
+     "max_abs": 3.2186508178710938e-06,
+     "ref_absmax": 0.6957204937934875
+    },
+    "u": {
+     "rel_l2": 2.0864586435851447e-05,
+     "max_abs": 7.718801498413086e-05,
+     "ref_absmax": 2.01065993309021
+    },
+    "v": {
+     "rel_l2": 9.771717848388522e-06,
+     "max_abs": 8.690357208251953e-05,
+     "ref_absmax": 2.7840869426727295
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 1.0,
+    "max_diff": 0,
+    "nonzero": 22714
+   },
+   "theta_max_ref": 0.6957204937934875,
+   "theta_max_webgpu_read": 0.6957224011421204,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "q20": {
+  "result": {
+   "ok": true,
+   "test": "short",
+   "tag": "q20",
+   "steps": 300,
+   "pre": 1500,
+   "info": {
+    "nx": 300,
+    "ny": 300,
+    "nz": 36,
+    "nzv": 21,
+    "dx": 20,
+    "dt": 0.17111466540582318,
+    "zbase": 41,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 6,
+    "nsw": 8,
+    "nCells": 3240000,
+    "nFluid": 3061994,
+    "top": 761
+   },
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "params": {
+    "tau0": 0.5002566576004028,
+    "cs2smag": 0.6516696214675903,
+    "gbeta": 4.739918222185224e-05,
+    "prt": 0.699999988079071,
+    "kfloor": 0.00021389333414845169,
+    "momfac": 1,
+    "srcscale": 1,
+    "sigmax": 0.002851911121979356,
+    "nsp": 6,
+    "nsw": 8,
+    "oclip": 1
+   },
+   "thetaMax": 2.5462186336517334,
+   "heatMW": 982.6079999999938,
+   "surfMax": 2.5462186336517334,
+   "surfMean": 0.09358570183555508,
+   "windMean": 0.8364857639136708,
+   "nan": 0,
+   "campusInfo": [
+    {
+     "id": "A",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 420
+    },
+    {
+     "id": "B",
+     "mw": 120,
+     "roofArea_m2": 148200,
+     "inDomain_m2": 148200,
+     "flux_wm2": 809.7165991902834,
+     "heatMW": 120,
+     "cells": 420
+    }
+   ]
+  },
+  "short_report": {
+   "tag": "q20",
+   "steps": 300,
+   "pre": 1500,
+   "nsw_reference": 8,
+   "nsw_webgpu": 8,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "grid": [
+    300,
+    300,
+    36
+   ],
+   "dx": 20,
+   "inflow": {
+    "w": 1,
+    "e": 0,
+    "s": 1,
+    "n": 0
+   },
+   "fluid_cells": 3061994,
+   "ref_wall_s": 9.020869731903076,
+   "step_outputs_all_fluid_cells": {
+    "theta": {
+     "rel_l2": 2.851785943501141e-06,
+     "max_abs": 1.8358230590820312e-05,
+     "ref_absmax": 2.5458929538726807
+    },
+    "ux": {
+     "rel_l2": 9.172373710175488e-06,
+     "max_abs": 2.75392085313797e-06,
+     "ref_absmax": 0.02432856336236
+    },
+    "uy": {
+     "rel_l2": 6.042994952729014e-06,
+     "max_abs": 1.7476268112659454e-06,
+     "ref_absmax": 0.03680037334561348
+    },
+    "uz": {
+     "rel_l2": 0.00021808325211949641,
+     "max_abs": 1.5307450667023659e-06,
+     "ref_absmax": 0.010402625426650047,
+     "rms_err_over_rms_speed": 3.2128370990759754e-06
+    }
+   },
+   "state_f": {
+    "rel_l2": 3.468848370095089e-07,
+    "max_abs": 1.043081283569336e-06,
+    "ref_absmax": 0.33788275718688965
+   },
+   "state_g": {
+    "rel_l2": 3.0055993136972394e-06,
+    "max_abs": 4.76837158203125e-06,
+    "ref_absmax": 0.6372498869895935
+   },
+   "read_surface": {
+    "theta": {
+     "rel_l2": 3.1270910991361005e-06,
+     "max_abs": 1.9073486328125e-05,
+     "ref_absmax": 2.546233892440796
+    },
+    "u": {
+     "rel_l2": 3.520325293765814e-05,
+     "max_abs": 0.00032401084899902344,
+     "ref_absmax": 1.9102065563201904
+    },
+    "v": {
+     "rel_l2": 2.587053772732044e-05,
+     "max_abs": 0.00020587444305419922,
+     "ref_absmax": 2.890225648880005
+    }
+   },
+   "read_volume_u8": {
+    "frac_equal": 0.9999957671957672,
+    "max_diff": 1,
+    "nonzero": 410380
+   },
+   "theta_max_ref": 2.546233892440796,
+   "theta_max_webgpu_read": 2.5462186336517334,
+   "pass_rel_l2_lt_1e-4": true,
+   "pass_note": "criterion: near-surface theta/u/v from read() and full-field theta/ux/uy; uz reported, not gated"
+  }
+ },
+ "L30c": {
+  "long_ref0_report": {
+   "tag": "L30c",
+   "nspin": 8572,
+   "navg": 2338,
+   "dt": 0.25667199810873476,
+   "sim_s": 2800.291499366296,
+   "avg_window_s": 600.0991315782219,
+   "dx": 30,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "oclip_reference": false,
+   "oclip_webgpu": true,
+   "ref_wall_s": 17.89085340499878,
+   "ref_mlups": 585.4164562699749,
+   "webgpu_wall_s": 4.472,
+   "surface_mean_theta": {
+    "pattern_corr": 0.9999999484677746,
+    "webgpu": {
+     "max": 2.2745157703566083,
+     "mean": 0.15256299161995943,
+     "p99": 1.0465420759346271
+    },
+    "numba": {
+     "max": 2.274672508239746,
+     "mean": 0.15256181359291077,
+     "p99": 1.0464290380477905
+    },
+    "rel_l2": 0.00026782605390745395,
+    "max_ratio": 0.9999310943080509,
+    "sampled_read_vs_acc_corr": 0.9999999455886425
+   },
+   "surface_mean_wind": {
+    "u_corr": 0.9999989906665552,
+    "v_corr": 0.9999982167941939,
+    "speed_mean_webgpu": 0.9621329186633159,
+    "speed_mean_numba": 0.9621175527572632
+   },
+   "volume_mean_theta_corr": 0.999999906259051,
+   "heat_budget_webgpu": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9945553958579,
+    "heat_content_MJ": 759721.4353856499,
+    "mass_imbalance_frac": 0.00033050715176313755
+   },
+   "heat_budget_numba": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9862560726152,
+    "heat_content_MJ": 759726.3125,
+    "mass_imbalance_frac": 0.0003318106221392904
+   },
+   "plume_webgpu": {
+    "displacement_m": 1069.8706115337231,
+    "bearing_deg": 22.053321769950855,
+    "heat_weighted_height_agl_m": 111.03465227128314
+   },
+   "plume_numba": {
+    "displacement_m": 1069.8895862716315,
+    "bearing_deg": 22.057172399283616,
+    "heat_weighted_height_agl_m": 111.03706536918972
+   },
+   "wind_toward_deg": 30,
+   "vs_10m_baseline": {
+    "first_cell_blockavg": {
+     "corr_webgpu": 0.9647219759985488,
+     "corr_numba": 0.9647164253633209,
+     "peak_ratio_webgpu": 1.031650082740122,
+     "peak_ratio_numba": 1.0317211742015289,
+     "mean_ratio_webgpu": 0.8481565525493361,
+     "baseline_peak": 2.2047357029385037,
+     "baseline_10m_peak": 2.2924234867095947
+    },
+    "same_layer_0_to_dx_blockavg": {
+     "corr_webgpu": 0.9757500321055486,
+     "peak_ratio_webgpu": 1.337114053273116,
+     "mean_ratio_webgpu": 0.9817438766491599,
+     "baseline_peak": 1.7010633945465088
+    }
+   }
+  },
+  "long_refauto_report": {
+   "tag": "L30c",
+   "nspin": 8572,
+   "navg": 2338,
+   "dt": 0.25667199810873476,
+   "sim_s": 2800.291499366296,
+   "avg_window_s": 600.0991315782219,
+   "dx": 30,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "oclip_reference": true,
+   "oclip_webgpu": true,
+   "ref_wall_s": 18.66110348701477,
+   "ref_mlups": 561.2529830986682,
+   "webgpu_wall_s": 4.472,
+   "surface_mean_theta": {
+    "pattern_corr": 0.9999999987414698,
+    "webgpu": {
+     "max": 2.2745157703566083,
+     "mean": 0.15256299161995943,
+     "p99": 1.0465420759346271
+    },
+    "numba": {
+     "max": 2.274498701095581,
+     "mean": 0.1525641828775406,
+     "p99": 1.046533226966858
+    },
+    "rel_l2": 4.32240696659956e-05,
+    "max_ratio": 1.0000075046255332,
+    "sampled_read_vs_acc_corr": 0.9999999455886425
+   },
+   "surface_mean_wind": {
+    "u_corr": 0.9999999932829524,
+    "v_corr": 0.999999960096109,
+    "speed_mean_webgpu": 0.9621329186633159,
+    "speed_mean_numba": 0.9621058702468872
+   },
+   "volume_mean_theta_corr": 0.9999999985884519,
+   "heat_budget_webgpu": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9945553958579,
+    "heat_content_MJ": 759721.4353856499,
+    "mass_imbalance_frac": 0.00033050715176313755
+   },
+   "heat_budget_numba": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9937973665478,
+    "heat_content_MJ": 759722.75,
+    "mass_imbalance_frac": 0.0003319985172799305
+   },
+   "plume_webgpu": {
+    "displacement_m": 1069.8706115337231,
+    "bearing_deg": 22.053321769950855,
+    "heat_weighted_height_agl_m": 111.03465227128314
+   },
+   "plume_numba": {
+    "displacement_m": 1069.8595252397438,
+    "bearing_deg": 22.05374570451943,
+    "heat_weighted_height_agl_m": 111.03288403988348
+   },
+   "wind_toward_deg": 30,
+   "vs_10m_baseline": {
+    "first_cell_blockavg": {
+     "corr_webgpu": 0.9647219759985488,
+     "corr_numba": 0.9647221466341034,
+     "peak_ratio_webgpu": 1.031650082740122,
+     "peak_ratio_numba": 1.0316423406506712,
+     "mean_ratio_webgpu": 0.8481565525493361,
+     "baseline_peak": 2.2047357029385037,
+     "baseline_10m_peak": 2.2924234867095947
+    },
+    "same_layer_0_to_dx_blockavg": {
+     "corr_webgpu": 0.9757500321055486,
+     "peak_ratio_webgpu": 1.337114053273116,
+     "mean_ratio_webgpu": 0.9817438766491599,
+     "baseline_peak": 1.7010633945465088
+    }
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "long",
+   "tag": "L30c",
+   "nspin": 8572,
+   "navg": 2338,
+   "dt": 0.25667199810873476,
+   "every": 78,
+   "nsamples": 30,
+   "wall_s": 4.472,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "final": {
+    "step": 10910,
+    "t": 2800.291499366296,
+    "surfMax": 2.272706985473633,
+    "surfMean": 0.15276587632991936,
+    "windMean": 0.9663705974337903,
+    "nan": 0,
+    "thetaMax": 2.2754111289978027,
+    "heatMJ": 760878.7084036838,
+    "ke": 9.540243697581523,
+    "nonFinite": 0
+   }
+  }
+ },
+ "L30": {
+  "long_report": {
+   "tag": "L30",
+   "nspin": 8572,
+   "navg": 2338,
+   "dt": 0.25667199810873476,
+   "sim_s": 2800.291499366296,
+   "avg_window_s": 600.0991315782219,
+   "dx": 30,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "ref_wall_s": 18.066163778305054,
+   "ref_mlups": 579.735694225098,
+   "webgpu_wall_s": 4.945399999976158,
+   "surface_mean_theta": {
+    "pattern_corr": 0.9999999986470703,
+    "webgpu": {
+     "max": 2.274691409591531,
+     "mean": 0.15256057351315863,
+     "p99": 1.0464399639615865
+    },
+    "numba": {
+     "max": 2.274672508239746,
+     "mean": 0.15256181359291077,
+     "p99": 1.0464290380477905
+    },
+    "rel_l2": 4.494404957046061e-05,
+    "max_ratio": 1.000008309482669,
+    "sampled_read_vs_acc_corr": 0.9999999454854024
+   },
+   "surface_mean_wind": {
+    "u_corr": 0.9999999923652542,
+    "v_corr": 0.9999999604894809,
+    "speed_mean_webgpu": 0.9621552773353654,
+    "speed_mean_numba": 0.9621175527572632
+   },
+   "volume_mean_theta_corr": 0.9999999985045748,
+   "heat_budget_webgpu": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9869883467205,
+    "heat_content_MJ": 759724.9032875745,
+    "mass_imbalance_frac": 0.0003303108753153389
+   },
+   "heat_budget_numba": {
+    "heat_injected_MW": 742.6080127613128,
+    "heat_advected_out_MW": 731.9862560726152,
+    "heat_content_MJ": 759726.3125,
+    "mass_imbalance_frac": 0.0003318106221392904
+   },
+   "plume_webgpu": {
+    "displacement_m": 1069.9028199773327,
+    "bearing_deg": 22.05662906164332,
+    "heat_weighted_height_agl_m": 111.03890397096855
+   },
+   "plume_numba": {
+    "displacement_m": 1069.8895862716315,
+    "bearing_deg": 22.057172399283616,
+    "heat_weighted_height_agl_m": 111.03706536918972
+   },
+   "wind_toward_deg": 30,
+   "vs_10m_baseline": {
+    "first_cell_blockavg": {
+     "corr_webgpu": 0.9647159929545612,
+     "corr_numba": 0.9647164253633209,
+     "peak_ratio_webgpu": 1.0317297472707452,
+     "peak_ratio_numba": 1.0317211742015289,
+     "mean_ratio_webgpu": 0.848143109360355,
+     "baseline_peak": 2.2047357029385037,
+     "baseline_10m_peak": 2.2924234867095947
+    },
+    "same_layer_0_to_dx_blockavg": {
+     "corr_webgpu": 0.9757437680034146,
+     "peak_ratio_webgpu": 1.3372173058829164,
+     "mean_ratio_webgpu": 0.9817283161156415,
+     "baseline_peak": 1.7010633945465088
+    }
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "long",
+   "tag": "L30",
+   "nspin": 8572,
+   "navg": 2338,
+   "dt": 0.25667199810873476,
+   "every": 78,
+   "nsamples": 30,
+   "wall_s": 4.945399999976158,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "final": {
+    "step": 10910,
+    "t": 2800.291499366296,
+    "surfMax": 2.272881507873535,
+    "surfMean": 0.1527635976418832,
+    "windMean": 0.9663888644036022,
+    "nan": 0,
+    "thetaMax": 2.275585412979126,
+    "heatMJ": 760883.6851841825,
+    "ke": 9.540141053031595,
+    "nonFinite": 0
+   }
+  }
+ },
+ "L30m": {
+  "long_report": {
+   "tag": "L30m",
+   "nspin": 3311,
+   "navg": 903,
+   "dt": 0.6645229724497987,
+   "sim_s": 2800.299805903452,
+   "avg_window_s": 600.0642441221682,
+   "dx": 30,
+   "nsw_reference": 5,
+   "nsw_webgpu": 5,
+   "ref_wall_s": 11.559273719787598,
+   "ref_mlups": 349.9735448841275,
+   "webgpu_wall_s": 3.102899999976158,
+   "surface_mean_theta": {
+    "pattern_corr": 0.9999999999861665,
+    "webgpu": {
+     "max": 2.1742475980672067,
+     "mean": 0.15021493530109373,
+     "p99": 1.019725934574639
+    },
+    "numba": {
+     "max": 2.174260139465332,
+     "mean": 0.15021485090255737,
+     "p99": 1.0197256803512573
+    },
+    "rel_l2": 4.4776130291858025e-06,
+    "max_ratio": 0.9999942318778247,
+    "sampled_read_vs_acc_corr": 0.9999999577673481
+   },
+   "surface_mean_wind": {
+    "u_corr": 0.9999999998554642,
+    "v_corr": 0.9999999997655941,
+    "speed_mean_webgpu": 0.9974506187900268,
+    "speed_mean_numba": 0.9974519610404968
+   },
+   "volume_mean_theta_corr": 0.9999999999819184,
+   "heat_budget_webgpu": {
+    "heat_injected_MW": 742.6080086571462,
+    "heat_advected_out_MW": 731.2250958118534,
+    "heat_content_MJ": 762021.2070686945,
+    "mass_imbalance_frac": 0.002287691281772588
+   },
+   "heat_budget_numba": {
+    "heat_injected_MW": 742.6080086571462,
+    "heat_advected_out_MW": 731.2255295658566,
+    "heat_content_MJ": 762019.5,
+    "mass_imbalance_frac": 0.0022878217822271596
+   },
+   "plume_webgpu": {
+    "displacement_m": 1073.8116412947925,
+    "bearing_deg": 21.17946362790667,
+    "heat_weighted_height_agl_m": 113.78038549776909
+   },
+   "plume_numba": {
+    "displacement_m": 1073.8108171855301,
+    "bearing_deg": 21.179565100918467,
+    "heat_weighted_height_agl_m": 113.78011463453048
+   },
+   "wind_toward_deg": 30,
+   "vs_10m_baseline": {
+    "first_cell_blockavg": {
+     "corr_webgpu": 0.96774442303871,
+     "corr_numba": 0.9677445832218627,
+     "peak_ratio_webgpu": 0.9861715375540651,
+     "peak_ratio_numba": 0.9861772259447908,
+     "mean_ratio_webgpu": 0.8351028012335401,
+     "baseline_peak": 2.2047357029385037,
+     "baseline_10m_peak": 2.2924234867095947
+    },
+    "same_layer_0_to_dx_blockavg": {
+     "corr_webgpu": 0.9809722536589432,
+     "peak_ratio_webgpu": 1.278169646726685,
+     "mean_ratio_webgpu": 0.9666341184529121,
+     "baseline_peak": 1.7010633945465088
+    }
+   }
+  },
+  "result": {
+   "ok": true,
+   "test": "long",
+   "tag": "L30m",
+   "nspin": 3311,
+   "navg": 903,
+   "dt": 0.6645229724497987,
+   "every": 30,
+   "nsamples": 31,
+   "wall_s": 3.102899999976158,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.6645229724497987,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 3.09,
+    "Umax": 4.5145166147384534,
+    "convU": 45.145166147384536,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "final": {
+    "step": 4214,
+    "t": 2800.299805903452,
+    "surfMax": 2.17495059967041,
+    "surfMean": 0.15036849090571608,
+    "windMean": 0.9976264901034716,
+    "nan": 0,
+    "thetaMax": 2.1819441318511963,
+    "heatMJ": 763488.6562051495,
+    "ke": 9.238390981956659,
+    "nonFinite": 0
+   }
+  }
+ },
+ "sp20": {
+  "result": {
+   "ok": true,
+   "test": "spinup",
+   "tag": "sp20",
+   "dt": 0.17111466540582318,
+   "every": 58,
+   "n": 364,
+   "wall_s": 20.95339999997616,
+   "info": {
+    "nx": 300,
+    "ny": 300,
+    "nz": 36,
+    "nzv": 21,
+    "dx": 20,
+    "dt": 0.17111466540582318,
+    "zbase": 41,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 6,
+    "nsw": 8,
+    "nCells": 3240000,
+    "nFluid": 3062822,
+    "top": 761
+   }
+  },
+  "spinup_report": {
+   "sp20": {
+    "dt": 0.17111466540582318,
+    "T": 3602.6481654542013,
+    "windMean": {
+     "settle_s": 605.4036862058024,
+     "settle_steps": 3538,
+     "final": 0.7788686492996691,
+     "tol": 0.02
+    },
+    "ke": {
+     "settle_s": 29.773951780613235,
+     "settle_steps": 174,
+     "final": 9.643004369275312,
+     "tol": 0.03
+    },
+    "heatMJ": {
+     "settle_s": 1498.6222396241994,
+     "settle_steps": 8758,
+     "final": 746261.1408140821,
+     "tol": 0.05
+    },
+    "surfMean": {
+     "settle_s": 1399.375733688822,
+     "settle_steps": 8178,
+     "final": 0.14614303309502755,
+     "tol": 0.05
+    }
+   },
+   "sp30": {
+    "dt": 0.25667199810873476,
+    "T": 3603.674853446636,
+    "windMean": {
+     "settle_s": 770.7860103205305,
+     "settle_steps": 3003,
+     "final": 0.9673539343910309,
+     "tol": 0.02
+    },
+    "ke": {
+     "settle_s": 30.030623778721967,
+     "settle_steps": 117,
+     "final": 9.539850144035785,
+     "tol": 0.03
+    },
+    "heatMJ": {
+     "settle_s": 1531.5618127148202,
+     "settle_steps": 5967,
+     "final": 761584.546993607,
+     "tol": 0.05
+    },
+    "surfMean": {
+     "settle_s": 1401.4291096736918,
+     "settle_steps": 5460,
+     "final": 0.15278954416982785,
+     "tol": 0.05
+    }
+   },
+   "sp40": {
+    "dt": 0.34222933081164636,
+    "T": 3602.6481654542013,
+    "windMean": {
+     "settle_s": 863.4446016377838,
+     "settle_steps": 2523,
+     "final": 1.0215403721203413,
+     "tol": 0.02
+    },
+    "ke": {
+     "settle_s": 29.773951780613235,
+     "settle_steps": 87,
+     "final": 9.551417076582489,
+     "tol": 0.03
+    },
+    "heatMJ": {
+     "settle_s": 1667.3412997143412,
+     "settle_steps": 4872,
+     "final": 791206.8641200582,
+     "tol": 0.05
+    },
+    "surfMean": {
+     "settle_s": 1558.1701431854258,
+     "settle_steps": 4553,
+     "final": 0.1397498611999641,
+     "tol": 0.05
+    }
+   },
+   "sp30u8": {
+    "dt": 0.25667199810873476,
+    "T": 2402.4499022977575,
+    "windMean": {
+     "settle_s": 410.4185249758669,
+     "settle_steps": 1599,
+     "final": 2.299249370724517,
+     "tol": 0.02
+    },
+    "ke": {
+     "settle_s": 30.030623778721967,
+     "settle_steps": 117,
+     "final": 63.31276829283933,
+     "tol": 0.03
+    },
+    "heatMJ": {
+     "settle_s": 750.7655944680491,
+     "settle_steps": 2925,
+     "final": 346915.9720166856,
+     "tol": 0.05
+    },
+    "surfMean": {
+     "settle_s": 710.7247627630866,
+     "settle_steps": 2769,
+     "final": 0.0837595104813185,
+     "tol": 0.05
+    }
+   },
+   "sp30u1": {
+    "dt": 0.25667199810873476,
+    "T": 7207.349706893272,
+    "windMean": {
+     "settle_s": 2542.5928132651266,
+     "settle_steps": 9906,
+     "final": 0.3728325484756404,
+     "tol": 0.02
+    },
+    "ke": {
+     "settle_s": 20.02041585248131,
+     "settle_steps": 78,
+     "final": 1.0097499566842147,
+     "tol": 0.03
+    },
+    "heatMJ": {
+     "settle_s": 2802.8582193473835,
+     "settle_steps": 10920,
+     "final": 1570720.3483602859,
+     "tol": 0.05
+    },
+    "surfMean": {
+     "settle_s": 2142.1844962155,
+     "settle_steps": 8346,
+     "final": 0.19148542053788103,
+     "tol": 0.05
+    }
+   }
+  }
+ },
+ "sp30": {
+  "result": {
+   "ok": true,
+   "test": "spinup",
+   "tag": "sp30",
+   "dt": 0.25667199810873476,
+   "every": 39,
+   "n": 361,
+   "wall_s": 6.944899999976158,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   }
+  }
+ },
+ "sp40": {
+  "result": {
+   "ok": true,
+   "test": "spinup",
+   "tag": "sp40",
+   "dt": 0.34222933081164636,
+   "every": 29,
+   "n": 364,
+   "wall_s": 4.432899999976158,
+   "info": {
+    "nx": 150,
+    "ny": 150,
+    "nz": 18,
+    "nzv": 11,
+    "dx": 40,
+    "dt": 0.34222933081164636,
+    "zbase": 21,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 3,
+    "nsw": 4,
+    "nCells": 405000,
+    "nFluid": 373198,
+    "top": 741
+   }
+  }
+ },
+ "sp30u8": {
+  "result": {
+   "ok": true,
+   "test": "spinup",
+   "tag": "sp30u8",
+   "dt": 0.25667199810873476,
+   "every": 39,
+   "n": 241,
+   "wall_s": 4.761600000023842,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   }
+  }
+ },
+ "sp30u1": {
+  "result": {
+   "ok": true,
+   "test": "spinup",
+   "tag": "sp30u1",
+   "dt": 0.25667199810873476,
+   "every": 78,
+   "n": 361,
+   "wall_s": 10.4155,
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 742.608,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   }
+  }
+ },
+ "benchF": {
+  "result": {
+   "ok": true,
+   "test": "bench",
+   "results": [
+    {
+     "dx": 20,
+     "wg": 64,
+     "nx": 300,
+     "nz": 36,
+     "cells": 3240000,
+     "fluid": 3062408,
+     "mlups": [
+      4262.03630730455,
+      4271.025572619332,
+      4297.082228116711,
+      4306.220096512507
+     ],
+     "median": 4284.0539003680215,
+     "msPerStep": 0.7562930054922203,
+     "adapter": "nvidia lovelace"
+    },
+    {
+     "dx": 20,
+     "wg": 128,
+     "nx": 300,
+     "nz": 36,
+     "cells": 3240000,
+     "fluid": 3062408,
+     "mlups": [
+      4271.025573961662,
+      4290.254237017247,
+      4317.697228968086,
+      4321.152307556747
+     ],
+     "median": 4303.975732992667,
+     "msPerStep": 0.7527923485170636,
+     "adapter": "nvidia lovelace"
+    },
+    {
+     "dx": 30,
+     "wg": 64,
+     "nx": 200,
+     "nz": 24,
+     "cells": 960000,
+     "fluid": 893655,
+     "mlups": [
+      4037.005888109754,
+      4078.164824176193,
+      4113.110538165138,
+      4155.8441558441555
+     ],
+     "median": 4095.6376811706655,
+     "msPerStep": 0.23439573388376508,
+     "adapter": "nvidia lovelace"
+    },
+    {
+     "dx": 30,
+     "wg": 128,
+     "nx": 200,
+     "nz": 24,
+     "cells": 960000,
+     "fluid": 893655,
+     "mlups": [
+      4099.060631103935,
+      4109.5890385792745,
+      4120.171673819743,
+      4155.8441558441555
+     ],
+     "median": 4114.880356199508,
+     "msPerStep": 0.23329961430194612,
+     "adapter": "nvidia lovelace"
+    },
+    {
+     "dx": 40,
+     "wg": 64,
+     "nx": 150,
+     "nz": 18,
+     "cells": 405000,
+     "fluid": 373198,
+     "mlups": [
+      6490.384630263734,
+      6532.258064516129,
+      6683.168327349119,
+      6772.5752562364805
+     ],
+     "median": 6607.713195932623,
+     "msPerStep": 0.06129200647650653,
+     "adapter": "nvidia lovelace"
+    },
+    {
+     "dx": 40,
+     "wg": 128,
+     "nx": 150,
+     "nz": 18,
+     "cells": 405000,
+     "fluid": 373198,
+     "mlups": [
+      6328.125,
+      6449.044590883987,
+      6727.574745501732,
+      6934.9314955245445
+     ],
+     "median": 6588.30966819286,
+     "msPerStep": 0.06147252032721914,
+     "adapter": "nvidia lovelace"
+    }
+   ]
+  }
+ },
+ "rl20": {
+  "result": {
+   "ok": true,
+   "test": "readlat",
+   "dx": 20,
+   "readLatencyMs": {
+    "median": 4.200000047683716,
+    "max": 9.900000095367432,
+    "min": 3.299999952316284
+   },
+   "steppingOnly": {
+    "stepsPerSec": 1201.300856185253,
+    "reads": 0
+   },
+   "steppingWithReads10Hz": {
+    "stepsPerSec": 1198.5617259193714,
+    "reads": 27
+   }
+  }
+ },
+ "rl30": {
+  "result": {
+   "ok": true,
+   "test": "readlat",
+   "dx": 30,
+   "readLatencyMs": {
+    "median": 3.1999999284744263,
+    "max": 4.700000047683716,
+    "min": 2.799999952316284
+   },
+   "steppingOnly": {
+    "stepsPerSec": 3328.562393954904,
+    "reads": 0
+   },
+   "steppingWithReads10Hz": {
+    "stepsPerSec": 3324.2288987547427,
+    "reads": 29
+   }
+  }
+ },
+ "rl40": {
+  "result": {
+   "ok": true,
+   "test": "readlat",
+   "dx": 40,
+   "readLatencyMs": {
+    "median": 3,
+    "max": 5.299999952316284,
+    "min": 2.899999976158142
+   },
+   "steppingOnly": {
+    "stepsPerSec": 6216.063160048037,
+    "reads": 0
+   },
+   "steppingWithReads10Hz": {
+    "stepsPerSec": 6232.502333071789,
+    "reads": 29
+   }
+  }
+ },
+ "stab": {
+  "result": {
+   "ok": true,
+   "test": "stab",
+   "results": [
+    {
+     "dx": 20,
+     "name": "calm-1ms-convective",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 2.343,
+       "wind": 0.337,
+       "umax": 0.98,
+       "thetaMax": 2.348,
+       "heatMJ": 294369.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 3.226,
+       "wind": 0.312,
+       "umax": 0.98,
+       "thetaMax": 3.231,
+       "heatMJ": 585303.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 3.742,
+       "wind": 0.303,
+       "umax": 0.98,
+       "thetaMax": 3.748,
+       "heatMJ": 868190.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 3.877,
+       "wind": 0.3,
+       "umax": 0.98,
+       "thetaMax": 3.883,
+       "heatMJ": 1136390.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 3.852,
+       "wind": 0.299,
+       "umax": 0.98,
+       "thetaMax": 3.858,
+       "heatMJ": 1384939.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 3.79,
+       "wind": 0.299,
+       "umax": 0.98,
+       "thetaMax": 3.796,
+       "heatMJ": 1611638.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 3.721,
+       "wind": 0.3,
+       "umax": 0.98,
+       "thetaMax": 3.727,
+       "heatMJ": 1816376.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 3.664,
+       "wind": 0.301,
+       "umax": 0.98,
+       "thetaMax": 3.67,
+       "heatMJ": 1999978.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 3.621,
+       "wind": 0.303,
+       "umax": 0.98,
+       "thetaMax": 3.627,
+       "heatMJ": 2163542.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 3.587,
+       "wind": 0.304,
+       "umax": 0.98,
+       "thetaMax": 3.593,
+       "heatMJ": 2308236.3,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 8.4,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 20,
+     "name": "strong-8ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 1.393,
+       "wind": 1.951,
+       "umax": 8.92,
+       "thetaMax": 1.399,
+       "heatMJ": 270737.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 1.697,
+       "wind": 1.801,
+       "umax": 8.93,
+       "thetaMax": 1.7,
+       "heatMJ": 511772.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 1.846,
+       "wind": 1.757,
+       "umax": 8.93,
+       "thetaMax": 1.848,
+       "heatMJ": 699591.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 1.935,
+       "wind": 1.74,
+       "umax": 8.93,
+       "thetaMax": 1.938,
+       "heatMJ": 830703.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 1.983,
+       "wind": 1.735,
+       "umax": 8.93,
+       "thetaMax": 1.986,
+       "heatMJ": 911388.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 2.002,
+       "wind": 1.733,
+       "umax": 8.93,
+       "thetaMax": 2.005,
+       "heatMJ": 954850.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 2.009,
+       "wind": 1.732,
+       "umax": 8.93,
+       "thetaMax": 2.011,
+       "heatMJ": 976685,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 2.011,
+       "wind": 1.732,
+       "umax": 8.93,
+       "thetaMax": 2.014,
+       "heatMJ": 986297.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 2.008,
+       "wind": 1.732,
+       "umax": 8.93,
+       "thetaMax": 2.011,
+       "heatMJ": 990513.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 2.013,
+       "wind": 1.732,
+       "umax": 8.93,
+       "thetaMax": 2.015,
+       "heatMJ": 990939.5,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 7.9,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 20,
+     "name": "mid-4ms-south",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 2.01,
+       "wind": 1.033,
+       "umax": 4.22,
+       "thetaMax": 2.015,
+       "heatMJ": 20533.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 2.471,
+       "wind": 0.898,
+       "umax": 4.22,
+       "thetaMax": 2.477,
+       "heatMJ": 41067.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 2.62,
+       "wind": 0.844,
+       "umax": 4.22,
+       "thetaMax": 2.625,
+       "heatMJ": 61599.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 2.654,
+       "wind": 0.825,
+       "umax": 4.22,
+       "thetaMax": 2.66,
+       "heatMJ": 81968.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 2.674,
+       "wind": 0.818,
+       "umax": 4.22,
+       "thetaMax": 2.68,
+       "heatMJ": 99560.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 2.691,
+       "wind": 0.817,
+       "umax": 4.22,
+       "thetaMax": 2.697,
+       "heatMJ": 112058.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 2.693,
+       "wind": 0.819,
+       "umax": 4.22,
+       "thetaMax": 2.699,
+       "heatMJ": 120047.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 2.694,
+       "wind": 0.821,
+       "umax": 4.22,
+       "thetaMax": 2.7,
+       "heatMJ": 124774.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 2.693,
+       "wind": 0.824,
+       "umax": 4.22,
+       "thetaMax": 2.699,
+       "heatMJ": 127622.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 2.692,
+       "wind": 0.825,
+       "umax": 4.22,
+       "thetaMax": 2.698,
+       "heatMJ": 129222.3,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 8,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 20,
+     "name": "calm-1ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 4.269,
+       "wind": 0.316,
+       "umax": 1.08,
+       "thetaMax": 4.272,
+       "heatMJ": 295153.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 6.328,
+       "wind": 0.278,
+       "umax": 1.08,
+       "thetaMax": 6.333,
+       "heatMJ": 588976.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 9.722,
+       "wind": 0.272,
+       "umax": 1.08,
+       "thetaMax": 9.726,
+       "heatMJ": 878635.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 8.462,
+       "wind": 0.271,
+       "umax": 1.08,
+       "thetaMax": 8.469,
+       "heatMJ": 1161299,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 8.091,
+       "wind": 0.273,
+       "umax": 1.1,
+       "thetaMax": 8.097,
+       "heatMJ": 1412729.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 7.994,
+       "wind": 0.274,
+       "umax": 1.15,
+       "thetaMax": 8,
+       "heatMJ": 1626704.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 7.931,
+       "wind": 0.276,
+       "umax": 1.08,
+       "thetaMax": 7.937,
+       "heatMJ": 1792883.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 8.007,
+       "wind": 0.279,
+       "umax": 1.08,
+       "thetaMax": 8.013,
+       "heatMJ": 1944208.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 8.012,
+       "wind": 0.282,
+       "umax": 1.08,
+       "thetaMax": 8.018,
+       "heatMJ": 2084656.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 7.972,
+       "wind": 0.286,
+       "umax": 1.08,
+       "thetaMax": 7.978,
+       "heatMJ": 2222687.2,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 7.8,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 20,
+     "name": "axis-270-2ms",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 2.96,
+       "wind": 0.555,
+       "umax": 2.18,
+       "thetaMax": 2.964,
+       "heatMJ": 167393.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 4.425,
+       "wind": 0.476,
+       "umax": 2.2,
+       "thetaMax": 4.43,
+       "heatMJ": 331694.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 4.845,
+       "wind": 0.441,
+       "umax": 2.2,
+       "thetaMax": 4.851,
+       "heatMJ": 490393.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 5.158,
+       "wind": 0.423,
+       "umax": 2.2,
+       "thetaMax": 5.164,
+       "heatMJ": 640717.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 5.504,
+       "wind": 0.414,
+       "umax": 2.2,
+       "thetaMax": 5.51,
+       "heatMJ": 778825.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 5.815,
+       "wind": 0.41,
+       "umax": 2.2,
+       "thetaMax": 5.82,
+       "heatMJ": 907558.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 6.333,
+       "wind": 0.41,
+       "umax": 2.2,
+       "thetaMax": 6.338,
+       "heatMJ": 1025474,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 6.148,
+       "wind": 0.41,
+       "umax": 2.2,
+       "thetaMax": 6.156,
+       "heatMJ": 1129720.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 6.075,
+       "wind": 0.412,
+       "umax": 2.2,
+       "thetaMax": 6.081,
+       "heatMJ": 1218616.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 6.023,
+       "wind": 0.416,
+       "umax": 2.2,
+       "thetaMax": 6.03,
+       "heatMJ": 1291216.7,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 7.8,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 20,
+     "name": "switching",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 171.1,
+       "surfMax": 0.97,
+       "wind": 0.912,
+       "umax": 3.37,
+       "thetaMax": 0.973,
+       "heatMJ": 125790.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 342.2,
+       "surfMax": 1.249,
+       "wind": 0.834,
+       "umax": 3.37,
+       "thetaMax": 1.25,
+       "heatMJ": 247393.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 513.3,
+       "surfMax": 1.124,
+       "wind": 2.124,
+       "umax": 9.36,
+       "thetaMax": 1.129,
+       "heatMJ": 388168.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 684.5,
+       "surfMax": 1.406,
+       "wind": 1.72,
+       "umax": 9.34,
+       "thetaMax": 1.411,
+       "heatMJ": 488592.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 855.6,
+       "surfMax": 1.505,
+       "wind": 1.634,
+       "umax": 9.34,
+       "thetaMax": 1.511,
+       "heatMJ": 505260.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1026.7,
+       "surfMax": 2.691,
+       "wind": 0.339,
+       "umax": 0.93,
+       "thetaMax": 2.696,
+       "heatMJ": 790492.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1197.8,
+       "surfMax": 3.507,
+       "wind": 0.314,
+       "umax": 0.93,
+       "thetaMax": 3.512,
+       "heatMJ": 1069762.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 1368.9,
+       "surfMax": 2.452,
+       "wind": 1.405,
+       "umax": 5.99,
+       "thetaMax": 2.455,
+       "heatMJ": 1277791,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 1540,
+       "surfMax": 2.598,
+       "wind": 1.092,
+       "umax": 6.04,
+       "thetaMax": 2.6,
+       "heatMJ": 1323358.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 1711.1,
+       "surfMax": 2.764,
+       "wind": 0.992,
+       "umax": 6.02,
+       "thetaMax": 2.767,
+       "heatMJ": 1284358.7,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 7.8,
+     "simTime": 1711.146654058232,
+     "dt": 0.17111466540582318
+    },
+    {
+     "dx": 30,
+     "name": "calm-1ms-convective",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 3.672,
+       "wind": 0.404,
+       "umax": 0.92,
+       "thetaMax": 3.676,
+       "heatMJ": 441198.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 4.607,
+       "wind": 0.383,
+       "umax": 0.92,
+       "thetaMax": 4.613,
+       "heatMJ": 871486.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 4.648,
+       "wind": 0.38,
+       "umax": 0.92,
+       "thetaMax": 4.653,
+       "heatMJ": 1271250.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 4.658,
+       "wind": 0.381,
+       "umax": 0.92,
+       "thetaMax": 4.663,
+       "heatMJ": 1624250.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 4.673,
+       "wind": 0.382,
+       "umax": 0.92,
+       "thetaMax": 4.679,
+       "heatMJ": 1926446.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 4.679,
+       "wind": 0.384,
+       "umax": 0.92,
+       "thetaMax": 4.685,
+       "heatMJ": 2180570.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 4.675,
+       "wind": 0.387,
+       "umax": 0.92,
+       "thetaMax": 4.68,
+       "heatMJ": 2391691.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 4.664,
+       "wind": 0.389,
+       "umax": 0.92,
+       "thetaMax": 4.67,
+       "heatMJ": 2564876.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 4.653,
+       "wind": 0.391,
+       "umax": 0.92,
+       "thetaMax": 4.659,
+       "heatMJ": 2704678.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 4.646,
+       "wind": 0.393,
+       "umax": 0.92,
+       "thetaMax": 4.652,
+       "heatMJ": 2814976.4,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.8,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 30,
+     "name": "strong-8ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 1.911,
+       "wind": 2.349,
+       "umax": 8.36,
+       "thetaMax": 1.916,
+       "heatMJ": 396251.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 2.206,
+       "wind": 2.234,
+       "umax": 8.36,
+       "thetaMax": 2.211,
+       "heatMJ": 698890.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 2.384,
+       "wind": 2.212,
+       "umax": 8.36,
+       "thetaMax": 2.39,
+       "heatMJ": 879586.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 2.443,
+       "wind": 2.209,
+       "umax": 8.36,
+       "thetaMax": 2.449,
+       "heatMJ": 964271.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 2.458,
+       "wind": 2.209,
+       "umax": 8.36,
+       "thetaMax": 2.464,
+       "heatMJ": 995993.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 2.457,
+       "wind": 2.208,
+       "umax": 8.36,
+       "thetaMax": 2.462,
+       "heatMJ": 1004014.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 2.463,
+       "wind": 2.208,
+       "umax": 8.36,
+       "thetaMax": 2.468,
+       "heatMJ": 1004663.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 2.464,
+       "wind": 2.209,
+       "umax": 8.36,
+       "thetaMax": 2.47,
+       "heatMJ": 1006084.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 2.461,
+       "wind": 2.208,
+       "umax": 8.36,
+       "thetaMax": 2.467,
+       "heatMJ": 1006813.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 2.46,
+       "wind": 2.208,
+       "umax": 8.36,
+       "thetaMax": 2.465,
+       "heatMJ": 1006084.7,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.5,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 30,
+     "name": "mid-4ms-south",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 2.109,
+       "wind": 1.226,
+       "umax": 3.74,
+       "thetaMax": 2.115,
+       "heatMJ": 30800.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 2.492,
+       "wind": 1.057,
+       "umax": 3.74,
+       "thetaMax": 2.497,
+       "heatMJ": 61599.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 2.708,
+       "wind": 0.994,
+       "umax": 3.74,
+       "thetaMax": 2.714,
+       "heatMJ": 91389.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 2.693,
+       "wind": 0.974,
+       "umax": 3.74,
+       "thetaMax": 2.699,
+       "heatMJ": 112661.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 2.645,
+       "wind": 0.968,
+       "umax": 3.74,
+       "thetaMax": 2.651,
+       "heatMJ": 124752,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 2.698,
+       "wind": 0.967,
+       "umax": 3.74,
+       "thetaMax": 2.704,
+       "heatMJ": 130492.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 2.734,
+       "wind": 0.967,
+       "umax": 3.74,
+       "thetaMax": 2.739,
+       "heatMJ": 132771.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 2.734,
+       "wind": 0.974,
+       "umax": 3.74,
+       "thetaMax": 2.739,
+       "heatMJ": 133568,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 2.706,
+       "wind": 0.978,
+       "umax": 3.74,
+       "thetaMax": 2.711,
+       "heatMJ": 134086.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 2.674,
+       "wind": 0.984,
+       "umax": 3.74,
+       "thetaMax": 2.68,
+       "heatMJ": 134462.2,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.5,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 30,
+     "name": "calm-1ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 4.93,
+       "wind": 0.38,
+       "umax": 0.95,
+       "thetaMax": 4.932,
+       "heatMJ": 442790.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 8.413,
+       "wind": 0.348,
+       "umax": 0.95,
+       "thetaMax": 8.412,
+       "heatMJ": 881983.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 8.534,
+       "wind": 0.349,
+       "umax": 0.96,
+       "thetaMax": 8.539,
+       "heatMJ": 1301325,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 8.681,
+       "wind": 0.353,
+       "umax": 0.96,
+       "thetaMax": 8.686,
+       "heatMJ": 1637200.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 8.68,
+       "wind": 0.357,
+       "umax": 1,
+       "thetaMax": 8.686,
+       "heatMJ": 1871687.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 8.97,
+       "wind": 0.362,
+       "umax": 0.99,
+       "thetaMax": 8.976,
+       "heatMJ": 2084544.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 8.913,
+       "wind": 0.366,
+       "umax": 1.3,
+       "thetaMax": 8.919,
+       "heatMJ": 2275975.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 9.211,
+       "wind": 0.374,
+       "umax": 1.43,
+       "thetaMax": 9.216,
+       "heatMJ": 2450517,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 8.452,
+       "wind": 0.377,
+       "umax": 1.2,
+       "thetaMax": 8.457,
+       "heatMJ": 2565657.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 8.479,
+       "wind": 0.379,
+       "umax": 1.2,
+       "thetaMax": 8.484,
+       "heatMJ": 2674810.8,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.5,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 30,
+     "name": "axis-270-2ms",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 3.38,
+       "wind": 0.666,
+       "umax": 2.09,
+       "thetaMax": 3.384,
+       "heatMJ": 250452.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 4.334,
+       "wind": 0.577,
+       "umax": 2.09,
+       "thetaMax": 4.34,
+       "heatMJ": 491572.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 4.913,
+       "wind": 0.53,
+       "umax": 2.08,
+       "thetaMax": 4.918,
+       "heatMJ": 712842.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 5.167,
+       "wind": 0.504,
+       "umax": 2.09,
+       "thetaMax": 5.172,
+       "heatMJ": 909770.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 5.942,
+       "wind": 0.496,
+       "umax": 2.09,
+       "thetaMax": 5.947,
+       "heatMJ": 1086959,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 5.307,
+       "wind": 0.496,
+       "umax": 2.09,
+       "thetaMax": 5.309,
+       "heatMJ": 1230929.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 6.337,
+       "wind": 0.499,
+       "umax": 2.09,
+       "thetaMax": 6.342,
+       "heatMJ": 1345780.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 5.942,
+       "wind": 0.506,
+       "umax": 2.09,
+       "thetaMax": 5.948,
+       "heatMJ": 1438820.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 5.086,
+       "wind": 0.512,
+       "umax": 2.09,
+       "thetaMax": 5.092,
+       "heatMJ": 1486349.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 5.357,
+       "wind": 0.515,
+       "umax": 2.09,
+       "thetaMax": 5.363,
+       "heatMJ": 1501672.2,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.5,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 30,
+     "name": "switching",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 256.7,
+       "surfMax": 1.546,
+       "wind": 1.088,
+       "umax": 3.04,
+       "thetaMax": 1.548,
+       "heatMJ": 187998.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 513.3,
+       "surfMax": 2.038,
+       "wind": 1.014,
+       "umax": 3.04,
+       "thetaMax": 2.041,
+       "heatMJ": 363068.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 770,
+       "surfMax": 1.289,
+       "wind": 2.485,
+       "umax": 8.47,
+       "thetaMax": 1.292,
+       "heatMJ": 558842.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1026.7,
+       "surfMax": 1.489,
+       "wind": 1.979,
+       "umax": 8.45,
+       "thetaMax": 1.495,
+       "heatMJ": 588925.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1283.4,
+       "surfMax": 1.634,
+       "wind": 1.916,
+       "umax": 8.48,
+       "thetaMax": 1.639,
+       "heatMJ": 536379,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 1540,
+       "surfMax": 4.002,
+       "wind": 0.406,
+       "umax": 0.9,
+       "thetaMax": 4.007,
+       "heatMJ": 960757.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 1796.7,
+       "surfMax": 4.817,
+       "wind": 0.388,
+       "umax": 0.9,
+       "thetaMax": 4.822,
+       "heatMJ": 1361999.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2053.4,
+       "surfMax": 3.226,
+       "wind": 1.639,
+       "umax": 5.29,
+       "thetaMax": 3.234,
+       "heatMJ": 1612560.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 2310,
+       "surfMax": 3.249,
+       "wind": 1.281,
+       "umax": 5.25,
+       "thetaMax": 3.254,
+       "heatMJ": 1468600.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 2566.7,
+       "surfMax": 3.542,
+       "wind": 1.168,
+       "umax": 5.24,
+       "thetaMax": 3.548,
+       "heatMJ": 1303254.6,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 2.5,
+     "simTime": 2566.7199810873476,
+     "dt": 0.25667199810873476
+    },
+    {
+     "dx": 40,
+     "name": "calm-1ms-convective",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 3.282,
+       "wind": 0.41,
+       "umax": 1.01,
+       "thetaMax": 3.286,
+       "heatMJ": 586679.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 4.243,
+       "wind": 0.393,
+       "umax": 1.01,
+       "thetaMax": 4.249,
+       "heatMJ": 1141947.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 4.514,
+       "wind": 0.392,
+       "umax": 1.01,
+       "thetaMax": 4.52,
+       "heatMJ": 1622189.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 4.603,
+       "wind": 0.394,
+       "umax": 1.01,
+       "thetaMax": 4.609,
+       "heatMJ": 2015544,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 4.662,
+       "wind": 0.397,
+       "umax": 1.01,
+       "thetaMax": 4.667,
+       "heatMJ": 2327185.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 4.718,
+       "wind": 0.4,
+       "umax": 1.01,
+       "thetaMax": 4.724,
+       "heatMJ": 2568126.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 4.77,
+       "wind": 0.403,
+       "umax": 1.01,
+       "thetaMax": 4.776,
+       "heatMJ": 2749981.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 4.82,
+       "wind": 0.406,
+       "umax": 1.01,
+       "thetaMax": 4.826,
+       "heatMJ": 2881989.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 4.846,
+       "wind": 0.409,
+       "umax": 1.01,
+       "thetaMax": 4.851,
+       "heatMJ": 2972150.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 4.792,
+       "wind": 0.411,
+       "umax": 1.01,
+       "thetaMax": 4.798,
+       "heatMJ": 3028626.8,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 1,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    },
+    {
+     "dx": 40,
+     "name": "strong-8ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 1.763,
+       "wind": 2.453,
+       "umax": 8.62,
+       "thetaMax": 1.769,
+       "heatMJ": 512309.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 1.912,
+       "wind": 2.376,
+       "umax": 8.61,
+       "thetaMax": 1.918,
+       "heatMJ": 850374.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 2.006,
+       "wind": 2.368,
+       "umax": 8.62,
+       "thetaMax": 2.012,
+       "heatMJ": 997287.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 2.061,
+       "wind": 2.368,
+       "umax": 8.62,
+       "thetaMax": 2.067,
+       "heatMJ": 1040501.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 2.065,
+       "wind": 2.367,
+       "umax": 8.62,
+       "thetaMax": 2.071,
+       "heatMJ": 1048559,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 2.069,
+       "wind": 2.368,
+       "umax": 8.62,
+       "thetaMax": 2.075,
+       "heatMJ": 1050119.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 2.062,
+       "wind": 2.367,
+       "umax": 8.62,
+       "thetaMax": 2.068,
+       "heatMJ": 1049698.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 2.068,
+       "wind": 2.368,
+       "umax": 8.62,
+       "thetaMax": 2.074,
+       "heatMJ": 1051228,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 2.06,
+       "wind": 2.368,
+       "umax": 8.62,
+       "thetaMax": 2.066,
+       "heatMJ": 1048374.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 2.062,
+       "wind": 2.369,
+       "umax": 8.62,
+       "thetaMax": 2.068,
+       "heatMJ": 1049555.1,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 0.7,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    },
+    {
+     "dx": 40,
+     "name": "mid-4ms-south",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 1.728,
+       "wind": 1.257,
+       "umax": 5.01,
+       "thetaMax": 1.734,
+       "heatMJ": 41067.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 2.113,
+       "wind": 1.092,
+       "umax": 5,
+       "thetaMax": 2.118,
+       "heatMJ": 81934.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 2.18,
+       "wind": 1.037,
+       "umax": 5,
+       "thetaMax": 2.185,
+       "heatMJ": 112192.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 2.164,
+       "wind": 1.03,
+       "umax": 5,
+       "thetaMax": 2.169,
+       "heatMJ": 128969.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 2.189,
+       "wind": 1.031,
+       "umax": 5,
+       "thetaMax": 2.194,
+       "heatMJ": 135820.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 2.187,
+       "wind": 1.035,
+       "umax": 5,
+       "thetaMax": 2.193,
+       "heatMJ": 137806,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 2.151,
+       "wind": 1.042,
+       "umax": 5,
+       "thetaMax": 2.157,
+       "heatMJ": 138508.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 2.04,
+       "wind": 1.048,
+       "umax": 5,
+       "thetaMax": 2.046,
+       "heatMJ": 138513.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 1.97,
+       "wind": 1.053,
+       "umax": 5,
+       "thetaMax": 1.976,
+       "heatMJ": 137808.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 1.979,
+       "wind": 1.056,
+       "umax": 5,
+       "thetaMax": 1.985,
+       "heatMJ": 136648.9,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 0.7,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    },
+    {
+     "dx": 40,
+     "name": "calm-1ms-neutral",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 4.587,
+       "wind": 0.39,
+       "umax": 1.04,
+       "thetaMax": 4.59,
+       "heatMJ": 589820.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 7.175,
+       "wind": 0.365,
+       "umax": 1.04,
+       "thetaMax": 7.181,
+       "heatMJ": 1170790.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 7.698,
+       "wind": 0.372,
+       "umax": 1.08,
+       "thetaMax": 7.703,
+       "heatMJ": 1667146.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 7.961,
+       "wind": 0.378,
+       "umax": 1.09,
+       "thetaMax": 7.967,
+       "heatMJ": 2012812.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 7.572,
+       "wind": 0.388,
+       "umax": 1.33,
+       "thetaMax": 7.578,
+       "heatMJ": 2291724.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 7.417,
+       "wind": 0.399,
+       "umax": 1.18,
+       "thetaMax": 7.423,
+       "heatMJ": 2533209.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 7.518,
+       "wind": 0.398,
+       "umax": 1.09,
+       "thetaMax": 7.524,
+       "heatMJ": 2671327.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 8.611,
+       "wind": 0.395,
+       "umax": 1.09,
+       "thetaMax": 8.615,
+       "heatMJ": 2797197.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 7.479,
+       "wind": 0.395,
+       "umax": 1.06,
+       "thetaMax": 7.485,
+       "heatMJ": 2860767.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 7.432,
+       "wind": 0.4,
+       "umax": 1.07,
+       "thetaMax": 7.438,
+       "heatMJ": 2894514.6,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 0.7,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    },
+    {
+     "dx": 40,
+     "name": "axis-270-2ms",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 4.039,
+       "wind": 0.671,
+       "umax": 2.48,
+       "thetaMax": 4.043,
+       "heatMJ": 332312,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 5.121,
+       "wind": 0.581,
+       "umax": 2.47,
+       "thetaMax": 5.127,
+       "heatMJ": 643664.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 5.374,
+       "wind": 0.543,
+       "umax": 2.47,
+       "thetaMax": 5.38,
+       "heatMJ": 913804.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 5.43,
+       "wind": 0.531,
+       "umax": 2.47,
+       "thetaMax": 5.436,
+       "heatMJ": 1145593,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 5.492,
+       "wind": 0.528,
+       "umax": 2.47,
+       "thetaMax": 5.498,
+       "heatMJ": 1327233.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 5.44,
+       "wind": 0.53,
+       "umax": 2.47,
+       "thetaMax": 5.446,
+       "heatMJ": 1456971.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 5.568,
+       "wind": 0.536,
+       "umax": 2.47,
+       "thetaMax": 5.574,
+       "heatMJ": 1534135,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 5.478,
+       "wind": 0.536,
+       "umax": 2.47,
+       "thetaMax": 5.484,
+       "heatMJ": 1558901.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 5.611,
+       "wind": 0.535,
+       "umax": 2.47,
+       "thetaMax": 5.617,
+       "heatMJ": 1555745.5,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 5.511,
+       "wind": 0.533,
+       "umax": 2.47,
+       "thetaMax": 5.517,
+       "heatMJ": 1549501.1,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 0.7,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    },
+    {
+     "dx": 40,
+     "name": "switching",
+     "ok": true,
+     "checks": [
+      {
+       "step": 1000,
+       "t": 342.2,
+       "surfMax": 1.367,
+       "wind": 1.119,
+       "umax": 3.31,
+       "thetaMax": 1.37,
+       "heatMJ": 248026.7,
+       "nonFinite": 0
+      },
+      {
+       "step": 2000,
+       "t": 684.5,
+       "surfMax": 1.684,
+       "wind": 1.054,
+       "umax": 3.31,
+       "thetaMax": 1.687,
+       "heatMJ": 464184.2,
+       "nonFinite": 0
+      },
+      {
+       "step": 3000,
+       "t": 1026.7,
+       "surfMax": 1.515,
+       "wind": 2.503,
+       "umax": 9.06,
+       "thetaMax": 1.52,
+       "heatMJ": 689954.1,
+       "nonFinite": 0
+      },
+      {
+       "step": 4000,
+       "t": 1368.9,
+       "surfMax": 1.911,
+       "wind": 2.051,
+       "umax": 9.18,
+       "thetaMax": 1.917,
+       "heatMJ": 614161.9,
+       "nonFinite": 0
+      },
+      {
+       "step": 5000,
+       "t": 1711.1,
+       "surfMax": 1.99,
+       "wind": 2.007,
+       "umax": 9.2,
+       "thetaMax": 1.996,
+       "heatMJ": 547414,
+       "nonFinite": 0
+      },
+      {
+       "step": 6000,
+       "t": 2053.4,
+       "surfMax": 3.96,
+       "wind": 0.414,
+       "umax": 0.98,
+       "thetaMax": 3.964,
+       "heatMJ": 1106151.3,
+       "nonFinite": 0
+      },
+      {
+       "step": 7000,
+       "t": 2395.6,
+       "surfMax": 4.661,
+       "wind": 0.399,
+       "umax": 0.98,
+       "thetaMax": 4.668,
+       "heatMJ": 1607406.4,
+       "nonFinite": 0
+      },
+      {
+       "step": 8000,
+       "t": 2737.8,
+       "surfMax": 3.021,
+       "wind": 1.67,
+       "umax": 5.41,
+       "thetaMax": 3.027,
+       "heatMJ": 1827557.6,
+       "nonFinite": 0
+      },
+      {
+       "step": 9000,
+       "t": 3080.1,
+       "surfMax": 3.148,
+       "wind": 1.311,
+       "umax": 5.36,
+       "thetaMax": 3.154,
+       "heatMJ": 1458974.8,
+       "nonFinite": 0
+      },
+      {
+       "step": 10000,
+       "t": 3422.3,
+       "surfMax": 3.175,
+       "wind": 1.217,
+       "umax": 5.36,
+       "thetaMax": 3.181,
+       "heatMJ": 1346892.8,
+       "nonFinite": 0
+      }
+     ],
+     "wall_s": 0.7,
+     "simTime": 3422.293308116464,
+     "dt": 0.34222933081164636
+    }
+   ]
+  }
+ },
+ "f40": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:3.09>235:3.09",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 6.16,
+     "worst": 7.04,
+     "status": "ok",
+     "ratio": 1.56
+    },
+    {
+     "case": "210:3.09>240:3.09",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 6.2,
+     "worst": 7.33,
+     "status": "ok",
+     "ratio": 1.62
+    },
+    {
+     "case": "210:3.09>30:3.09",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 5.6,
+     "worst": 5.65,
+     "status": "ok",
+     "ratio": 1.25
+    },
+    {
+     "case": "210:3.09>90:8",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 14.88,
+     "worst": 14.95,
+     "status": "ok",
+     "ratio": 1.28
+    },
+    {
+     "case": "210:8>210:1",
+     "dx": 40,
+     "umaxBefore": 14.39,
+     "umaxAfter": 2.21,
+     "worst": 13.03,
+     "status": "ok",
+     "ratio": 1.11
+    },
+    {
+     "case": "210:1>210:8",
+     "dx": 40,
+     "umaxBefore": 1.86,
+     "umaxAfter": 14.4,
+     "worst": 19.24,
+     "status": "ok",
+     "ratio": 1.65
+    },
+    {
+     "case": "210:8>30:1",
+     "dx": 40,
+     "umaxBefore": 14.39,
+     "umaxAfter": 1.9,
+     "worst": 1.91,
+     "status": "ok",
+     "ratio": 0.16
+    },
+    {
+     "case": "210:3.09>30:3.09:60",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 5.47,
+     "worst": 6.68,
+     "status": "ok",
+     "ratio": 1.48
+    },
+    {
+     "case": "210:3.09>30:3.09:300",
+     "dx": 40,
+     "umaxBefore": 5.83,
+     "umaxAfter": 5.58,
+     "worst": 7.06,
+     "status": "ok",
+     "ratio": 1.56
+    },
+    {
+     "case": "210:8>30:1:600",
+     "dx": 40,
+     "umaxBefore": 14.39,
+     "umaxAfter": 2.03,
+     "worst": 14.51,
+     "status": "ok",
+     "ratio": 1.24
+    },
+    {
+     "case": "90:8>270:2:200",
+     "dx": 40,
+     "umaxBefore": 14.86,
+     "umaxAfter": 4.35,
+     "worst": 12.14,
+     "status": "ok",
+     "ratio": 1.04
+    },
+    {
+     "case": "180:4>0:1:100",
+     "dx": 40,
+     "umaxBefore": 7.6,
+     "umaxAfter": 2.01,
+     "worst": 5.01,
+     "status": "ok",
+     "ratio": 0.86
+    }
+   ]
+  }
+ },
+ "f30": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:3.09>235:3.09",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 5.81,
+     "worst": 7.04,
+     "status": "ok",
+     "ratio": 1.56
+    },
+    {
+     "case": "210:3.09>240:3.09",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 5.96,
+     "worst": 7.36,
+     "status": "ok",
+     "ratio": 1.63
+    },
+    {
+     "case": "210:3.09>30:3.09",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 5.41,
+     "worst": 5.41,
+     "status": "ok",
+     "ratio": 1.2
+    },
+    {
+     "case": "210:3.09>90:8",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 12.98,
+     "worst": 13.18,
+     "status": "ok",
+     "ratio": 1.13
+    },
+    {
+     "case": "210:8>210:1",
+     "dx": 30,
+     "umaxBefore": 13.15,
+     "umaxAfter": 2.4,
+     "worst": 12.88,
+     "status": "ok",
+     "ratio": 1.1
+    },
+    {
+     "case": "210:1>210:8",
+     "dx": 30,
+     "umaxBefore": 1.68,
+     "umaxAfter": 13.15,
+     "worst": 19.07,
+     "status": "ok",
+     "ratio": 1.63
+    },
+    {
+     "case": "210:8>30:1",
+     "dx": 30,
+     "umaxBefore": 13.15,
+     "umaxAfter": 2.11,
+     "worst": 2.2,
+     "status": "ok",
+     "ratio": 0.19
+    },
+    {
+     "case": "210:3.09>30:3.09:60",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 5.31,
+     "worst": 5.32,
+     "status": "ok",
+     "ratio": 1.18
+    },
+    {
+     "case": "210:3.09>30:3.09:300",
+     "dx": 30,
+     "umaxBefore": 5.17,
+     "umaxAfter": 5.37,
+     "worst": 7.76,
+     "status": "ok",
+     "ratio": 1.72
+    },
+    {
+     "case": "210:8>30:1:600",
+     "dx": 30,
+     "umaxBefore": 13.15,
+     "umaxAfter": 2.02,
+     "worst": 13.52,
+     "status": "ok",
+     "ratio": 1.16
+    },
+    {
+     "case": "90:8>270:2:200",
+     "dx": 30,
+     "umaxBefore": 12.97,
+     "umaxAfter": 3.87,
+     "worst": 10.93,
+     "status": "ok",
+     "ratio": 0.94
+    },
+    {
+     "case": "180:4>0:1:100",
+     "dx": 30,
+     "umaxBefore": 6.9,
+     "umaxAfter": 2.02,
+     "worst": 4.66,
+     "status": "ok",
+     "ratio": 0.8
+    }
+   ]
+  }
+ },
+ "f20": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:3.09>235:3.09",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 5.2,
+     "worst": 7,
+     "status": "ok",
+     "ratio": 1.55
+    },
+    {
+     "case": "210:3.09>240:3.09",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 5.27,
+     "worst": 7.31,
+     "status": "ok",
+     "ratio": 1.62
+    },
+    {
+     "case": "210:3.09>30:3.09",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 5.28,
+     "worst": 5.3,
+     "status": "ok",
+     "ratio": 1.17
+    },
+    {
+     "case": "210:3.09>90:8",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 14.11,
+     "worst": 14.14,
+     "status": "ok",
+     "ratio": 1.21
+    },
+    {
+     "case": "210:8>210:1",
+     "dx": 20,
+     "umaxBefore": 12.89,
+     "umaxAfter": 2.41,
+     "worst": 12.85,
+     "status": "ok",
+     "ratio": 1.1
+    },
+    {
+     "case": "210:1>210:8",
+     "dx": 20,
+     "umaxBefore": 1.66,
+     "umaxAfter": 12.88,
+     "worst": 19.5,
+     "status": "ok",
+     "ratio": 1.67
+    },
+    {
+     "case": "210:8>30:1",
+     "dx": 20,
+     "umaxBefore": 12.89,
+     "umaxAfter": 2.09,
+     "worst": 2.09,
+     "status": "ok",
+     "ratio": 0.18
+    },
+    {
+     "case": "210:3.09>30:3.09:60",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 5.25,
+     "worst": 5.5,
+     "status": "ok",
+     "ratio": 1.22
+    },
+    {
+     "case": "210:3.09>30:3.09:300",
+     "dx": 20,
+     "umaxBefore": 4.97,
+     "umaxAfter": 5.25,
+     "worst": 7.15,
+     "status": "ok",
+     "ratio": 1.58
+    },
+    {
+     "case": "210:8>30:1:600",
+     "dx": 20,
+     "umaxBefore": 12.89,
+     "umaxAfter": 2.11,
+     "worst": 13.57,
+     "status": "ok",
+     "ratio": 1.16
+    },
+    {
+     "case": "90:8>270:2:200",
+     "dx": 20,
+     "umaxBefore": 14.11,
+     "umaxAfter": 3.71,
+     "worst": 11.12,
+     "status": "ok",
+     "ratio": 0.95
+    },
+    {
+     "case": "180:4>0:1:100",
+     "dx": 20,
+     "umaxBefore": 6.62,
+     "umaxAfter": 1.85,
+     "worst": 5.01,
+     "status": "ok",
+     "ratio": 0.86
+    }
+   ]
+  }
+ },
+ "wo40": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2.04,
+     "worst": 2.12,
+     "status": "ok",
+     "ratio": 1.45
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2,
+     "worst": 2.12,
+     "status": "ok",
+     "ratio": 1.45
+    }
+   ]
+  }
+ },
+ "wo40b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 4.53,
+     "worst": 5.08,
+     "status": "ok",
+     "ratio": 3.48
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 3.65,
+     "worst": 3.88,
+     "status": "ok",
+     "ratio": 2.66
+    }
+   ]
+  }
+ },
+ "wo30": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2.15,
+     "worst": 2.29,
+     "status": "ok",
+     "ratio": 1.57
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2.21,
+     "worst": 2.23,
+     "status": "ok",
+     "ratio": 1.53
+    }
+   ]
+  }
+ },
+ "wo30b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 4.14,
+     "worst": 5.11,
+     "status": "ok",
+     "ratio": 3.5
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 4.04,
+     "worst": 4.48,
+     "status": "ok",
+     "ratio": 3.07
+    }
+   ]
+  }
+ },
+ "wo20": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2.1,
+     "worst": 2.19,
+     "status": "ok",
+     "ratio": 1.5
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 2.14,
+     "worst": 2.16,
+     "status": "ok",
+     "ratio": 1.48
+    }
+   ]
+  }
+ },
+ "wo20b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 4.28,
+     "worst": 5.84,
+     "status": "ok",
+     "ratio": 4
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 3.73,
+     "worst": 5.38,
+     "status": "ok",
+     "ratio": 3.68
+    }
+   ]
+  }
+ },
+ "wl40": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 28.43,
+     "worst": 28.43,
+     "status": "spurious 28.4 m/s at +3439 s",
+     "ratio": 19.46
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 30.56,
+     "worst": 30.56,
+     "status": "spurious 30.6 m/s at +4415 s",
+     "ratio": 20.92
+    }
+   ]
+  }
+ },
+ "wl40b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 34.14,
+     "worst": 34.14,
+     "status": "spurious 34.1 m/s at +873 s",
+     "ratio": 23.37
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 40,
+     "umaxBefore": 1.46,
+     "umaxAfter": 33.14,
+     "worst": 33.14,
+     "status": "spurious 33.1 m/s at +616 s",
+     "ratio": 22.68
+    }
+   ]
+  }
+ },
+ "wl30": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 27.72,
+     "worst": 27.72,
+     "status": "spurious 27.7 m/s at +2585 s",
+     "ratio": 18.97
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 27.77,
+     "worst": 27.77,
+     "status": "spurious 27.8 m/s at +2877 s",
+     "ratio": 19.01
+    }
+   ]
+  }
+ },
+ "wl30b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 31.77,
+     "worst": 31.77,
+     "status": "spurious 31.8 m/s at +780 s",
+     "ratio": 21.75
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 30,
+     "umaxBefore": 1.46,
+     "umaxAfter": 33.85,
+     "worst": 33.85,
+     "status": "spurious 33.8 m/s at +732 s",
+     "ratio": 23.17
+    }
+   ]
+  }
+ },
+ "wl20": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 24.23,
+     "worst": 24.23,
+     "status": "spurious 24.2 m/s at +2084 s",
+     "ratio": 16.58
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 24.1,
+     "worst": 24.1,
+     "status": "spurious 24.1 m/s at +2084 s",
+     "ratio": 16.5
+    }
+   ]
+  }
+ },
+ "wl20b": {
+  "result": {
+   "ok": true,
+   "test": "switchscan",
+   "results": [
+    {
+     "case": "210:1>210:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 29.25,
+     "worst": 29.25,
+     "status": "spurious 29.3 m/s at +794 s",
+     "ratio": 20.02
+    },
+    {
+     "case": "300:1>300:1",
+     "dx": 20,
+     "umaxBefore": 1.46,
+     "umaxAfter": 26.85,
+     "worst": 26.85,
+     "status": "spurious 26.8 m/s at +744 s",
+     "ratio": 18.38
+    }
+   ]
+  }
+ },
+ "n40d": {
+  "result": {
+   "ok": true,
+   "test": "dirscan",
+   "dx": 40,
+   "u10": 4,
+   "side": 0,
+   "results": [
+    {
+     "dir": 180,
+     "inflow": {
+      "w": 0,
+      "e": 0,
+      "s": 1,
+      "n": 0
+     },
+     "failAt": null,
+     "umaxSeen": 5.01,
+     "steps": 10000,
+     "simTime": 3422
+    },
+    {
+     "dir": 180.5,
+     "inflow": {
+      "w": 1,
+      "e": 0,
+      "s": 1,
+      "n": 0
+     },
+     "failAt": null,
+     "umaxSeen": 5,
+     "steps": 10000,
+     "simTime": 3422
+    },
+    {
+     "dir": 181,
+     "inflow": {
+      "w": 1,
+      "e": 0,
+      "s": 1,
+      "n": 0
+     },
+     "failAt": null,
+     "umaxSeen": 4.99,
+     "steps": 10000,
+     "simTime": 3422
+    },
+    {
+     "dir": 270,
+     "inflow": {
+      "w": 1,
+      "e": 0,
+      "s": 0,
+      "n": 0
+     },
+     "failAt": null,
+     "umaxSeen": 5.03,
+     "steps": 10000,
+     "simTime": 3422
+    },
+    {
+     "dir": 0,
+     "inflow": {
+      "w": 0,
+      "e": 0,
+      "s": 0,
+      "n": 1
+     },
+     "failAt": null,
+     "umaxSeen": 4.33,
+     "steps": 10000,
+     "simTime": 3422
+    }
+   ]
+  }
+ },
+ "api20": {
+  "result": {
+   "ok": true,
+   "test": "api",
+   "badDx": "rejected: live solver: dx must be 20, 30 or 40 m (got 25)",
+   "badU10Max": "rejected: live solver: u10Max must be within 1-20 m/s (got 0)",
+   "info": {
+    "nx": 300,
+    "ny": 300,
+    "nz": 36,
+    "nzv": 21,
+    "dx": 20,
+    "dt": 0.17111466540582318,
+    "zbase": 41,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 1485.216,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471724,
+    "nsp": 6,
+    "nsw": 8,
+    "nCells": 3240000,
+    "nFluid": 3062822,
+    "top": 761
+   },
+   "readNoVolNoWind": {
+    "surf": 90000,
+    "u": null,
+    "v": null,
+    "vol": null,
+    "thetaMax": 0.5963345170021057,
+    "simTime": 51.334399621746954
+   },
+   "concurrentReads": [
+    51.33,
+    52.19,
+    53.05,
+    53.9,
+    54.76,
+    55.61,
+    56.47,
+    57.32
+   ],
+   "campuses": {
+    "nFluidWith": 3061994,
+    "nFluidWithout": 3062822,
+    "heatMWwith": 982.6079999999938,
+    "heatMWwithout": 742.608,
+    "existingMW": 742.608,
+    "campusInfo": [],
+    "nonFinite": 0,
+    "umaxDomain": 4.9156389597280015
+   },
+   "heatExistingMW800": 1485.216,
+   "afterResetHeat": {
+    "simTime": 0,
+    "thetaMax": 0,
+    "windMean": 0.818508836372266
+   },
+   "afterResetFlow": {
+    "simTime": 0,
+    "thetaMax": 0,
+    "windMean": 2.0887831200708455
+   },
+   "flowReinits": {
+    "afterSmallTurn": 0,
+    "afterBigTurn": 1
+   },
+   "afterDestroy": "rejected: live solver: destroyed",
+   "ownDevice": {
+    "ok": true,
+    "adapter": "nvidia lovelace",
+    "simTime": 34.22293308116463
+   },
+   "deviceStillUsable": "yes"
+  }
+ },
+ "api30": {
+  "result": {
+   "ok": true,
+   "test": "api",
+   "badDx": "rejected: live solver: dx must be 20, 30 or 40 m (got 25)",
+   "badU10Max": "rejected: live solver: u10Max must be within 1-20 m/s (got 0)",
+   "info": {
+    "nx": 200,
+    "ny": 200,
+    "nz": 24,
+    "nzv": 14,
+    "dx": 30,
+    "dt": 0.25667199810873476,
+    "zbase": 31,
+    "baseElev": 83.53166,
+    "x0": -2995,
+    "z0": -2995,
+    "adapter": "nvidia lovelace",
+    "heatExistingMW": 1485.216,
+    "dcRoofArea_m2": 1856520,
+    "u10Max": 8,
+    "Umax": 11.688068905471724,
+    "convU": 116.88068905471725,
+    "nsp": 4,
+    "nsw": 5,
+    "nCells": 960000,
+    "nFluid": 893655,
+    "top": 751
+   },
+   "readNoVolNoWind": {
+    "surf": 40000,
+    "u": null,
+    "v": null,
+    "vol": null,
+    "thetaMax": 0.6970882415771484,
+    "simTime": 77.00159943262042
+   },
+   "concurrentReads": [
+    77,
+    78.28,
+    79.57,
+    80.85,
+    82.14,
+    83.42,
+    84.7,
+    85.99
+   ],
+   "campuses": {
+    "nFluidWith": 893655,
+    "nFluidWithout": 893655,
+    "heatMWwith": 982.6079999999987,
+    "heatMWwithout": 742.608,
+    "existingMW": 742.608,
+    "campusInfo": [],
+    "nonFinite": 0,
+    "umaxDomain": 5.177173289845891
+   },
+   "heatExistingMW800": 1485.216,
+   "afterResetHeat": {
+    "simTime": 0,
+    "thetaMax": 0,
+    "windMean": 1.0019917534607772
+   },
+   "afterResetFlow": {
+    "simTime": 0,
+    "thetaMax": 0,
+    "windMean": 2.2327818890865805
+   },
+   "flowReinits": {
+    "afterSmallTurn": 0,
+    "afterBigTurn": 1
+   },
+   "afterDestroy": "rejected: live solver: destroyed",
+   "ownDevice": {
+    "ok": true,
+    "adapter": "nvidia lovelace",
+    "simTime": 34.22293308116463
+   },
+   "deviceStillUsable": "yes"
+  }
+ }
+}

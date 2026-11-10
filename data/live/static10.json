@@ -1,0 +1,103 @@
+{
+ "version": 1,
+ "what": "10 m static inputs of the live WebGPU solver (js/live/): terrain, land cover (roughness), building cover fraction, mean building height, operational data-center roof area",
+ "file": "static10.bin.gz",
+ "raw_bytes": 2520000,
+ "gz_bytes": 529727,
+ "sha1_raw": "91bb1edac8c1b5998445145a15c8eda302e07177",
+ "grid": {
+  "nrows": 600,
+  "ncols": 600,
+  "dx_m": 10.0,
+  "orientation": "north-up: row 0 = north edge (scene z = -2995), col 0 = west edge (scene x = -2995)",
+  "scene_x0": -2995.0,
+  "scene_z0": -2995.0,
+  "utm_bbox": [
+   283785.0,
+   4317795.0,
+   289785.0,
+   4323795.0
+  ],
+  "crs": "EPSG:32618"
+ },
+ "scene": {
+  "origin_utm": [
+   286780.0,
+   4320800.0
+  ],
+  "base_elev_m": 83.53166198730469,
+  "frame": "x = easting - 286780, z = -(northing - 4320800) (+z south), y = elevation - 83.53166"
+ },
+ "planes": {
+  "dem": {
+   "offset": 0,
+   "bytes": 720000,
+   "dtype": "int16",
+   "encoding": "rowdelta-byteplanes",
+   "scale": 0.01,
+   "units": "m NAVD88",
+   "note": "q[r,c] = sum_{c'<=c} delta[r,c']; value = q*0.01; low-byte plane then high-byte plane"
+  },
+  "lc": {
+   "offset": 720000,
+   "bytes": 360000,
+   "dtype": "uint8",
+   "encoding": "raw",
+   "units": "ESA WorldCover class"
+  },
+  "frac25": {
+   "offset": 1080000,
+   "bytes": 360000,
+   "dtype": "uint8",
+   "encoding": "raw",
+   "scale": 0.04,
+   "units": "fraction"
+  },
+  "hmean": {
+   "offset": 1440000,
+   "bytes": 720000,
+   "dtype": "uint16",
+   "encoding": "raw",
+   "scale": 0.01,
+   "units": "m"
+  },
+  "dca4": {
+   "offset": 2160000,
+   "bytes": 360000,
+   "dtype": "uint8",
+   "encoding": "raw",
+   "scale": 4.0,
+   "units": "m2 per 10 m cell"
+  }
+ },
+ "z0_by_class": {
+  "10": 1.0,
+  "20": 0.3,
+  "30": 0.03,
+  "40": 0.05,
+  "50": 0.5,
+  "60": 0.01,
+  "80": 0.0002,
+  "90": 0.05
+ },
+ "z0_default": 0.1,
+ "checksums": {
+  "dem_sum_cm": 2857165085,
+  "lc_sum": 11008480,
+  "frac25_sum": 1238571,
+  "hmean_sum_cm": 64081398,
+  "dca4_sum": 464130
+ },
+ "stats": {
+  "dem_min": 60.82,
+  "dem_max": 104.92,
+  "dcarea_total_m2": 1856520.0,
+  "dem_max_abs_err_m": 0.0049999999999954525,
+  "hmean_max_abs_err_m": 0.005000000000000782
+ },
+ "provenance": {
+  "dem": "USGS 3DEP 1/3\" (prototype data/dem.npy)",
+  "lc": "ESA WorldCover 2021 v200 (data/landcover.npy)",
+  "frac_hmean_dcarea": "sim/_domain_base.npz (lbm3d.rasterize_buildings of data/buildings.geojson at 2 m sub-pixels)"
+ }
+}

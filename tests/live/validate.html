@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Live solver validation</title>
+<style>
+  :root { --bg: #f3f1ea; --ink: #1f2a3a; --mute: #6b7280; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #151a22; --ink: #e8e6df; --mute: #9aa3af; } }
+  body { background: var(--bg); color: var(--ink); font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; margin: 16px; }
+  h1 { font: 600 18px Georgia, serif; margin: 0 0 8px; }
+  p { color: var(--mute); margin: 0 0 12px; }
+  pre { white-space: pre-wrap; word-break: break-word; }
+</style>
+</head>
+<body>
+<h1>Live solver validation</h1>
+<p>Run headless with <code>node tools/live/run_headless.js "test=smoke&amp;dx=30"</code>. Tests: smoke, short, long, stab, bench, readlat, spinup, switchscan, dirscan (see tools/live/validate_live.py and js/live/README.md).</p>
+<pre id="log"></pre>
+<script type="module">
+import { createLiveSolver } from '../../js/live/solver.js';
+
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => (Q.has(k) && Q.get(k) !== '' ? +Q.get(k) : d);
+const logEl = document.getElementById('log');
+const log = (...a) => { const s = a.map(x => (typeof x === 'string' ? x : JSON.stringify(x))).join(' '); console.log(s); logEl.textContent += s + '\n'; };
+const BASE = '../../data/live/';
+const MET_AUG25 = { u10: 3.09, dirFrom: 210, wstar: 1.67, blh: 903, ustar: 0.32 };
+// the prototype's hypothetical 120 MW campuses (sim/scenario_campuses.geojson), 3 halls of 380 m x 130 m, scene metres
+const CAMPUSES = {
+  A: { id: 'A', mw: 120, halls: [[-205, 475, 175, 605], [-205, 635, 175, 765], [-205, 795, 175, 925]] },
+  B: { id: 'B', mw: 120, halls: [[-2645, 1035, -2265, 1165], [-2645, 1195, -2265, 1325], [-2645, 1355, -2265, 1485]] },
+  C: { id: 'C', mw: 120, halls: [[1555, -1495, 1935, -1365], [1555, -1335, 1935, -1205], [1555, -1175, 1935, -1045]] },
+};
+const campusList = s => (s || '').split('').filter(c => CAMPUSES[c]).map(c => CAMPUSES[c]);
+
+async function dump(name, data) {
+  let body;
+  if (data instanceof ArrayBuffer) body = data;
+  else if (ArrayBuffer.isView(data)) body = data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
+  else body = new TextEncoder().encode(JSON.stringify(data)).buffer;
+  // chunked (the CDP pipe of the headless runner mirrors request bodies and cannot carry hundreds of MB at once)
+  const CH = 8 << 20;
+  for (let off = 0; off === 0 || off < body.byteLength; off += CH) {
+    const r = await fetch(`/__dump/${name}?append=${off > 0 ? 1 : 0}`, { method: 'POST', body: body.slice(off, Math.min(body.byteLength, off + CH)) });
+    if (!r.ok) throw new Error('dump failed: ' + name);
+  }
+}
+
+async function dumpDomain(tag, s) {
+  const d = s._dbg.domain();
+  await dump(`${tag}_kt.bin`, d.kt); await dump(`${tag}_ktop.bin`, d.ktop);
+  await dump(`${tag}_cd.bin`, d.cd); await dump(`${tag}_q.bin`, d.q);
+  await dump(`${tag}_uin.bin`, d.uin); await dump(`${tag}_vin.bin`, d.vin); await dump(`${tag}_kbg.bin`, d.kbg);
+  const meta = { ...d, kt: undefined, ktop: undefined, cd: undefined, q: undefined, uin: undefined, vin: undefined, kbg: undefined, info: s.info };
+  await dump(`${tag}_domain.json`, meta);
+  return d;
+}
+
+function makeSolver(extra = {}) {
+  const o = {
+    base: BASE, dx: num('dx', 30), u10Max: num('u10max', 8), heightM: num('height', 720),
+    met: { u10: num('u10', MET_AUG25.u10), dirFrom: num('dir', MET_AUG25.dirFrom), wstar: num('wstar', MET_AUG25.wstar), blh: num('blh', MET_AUG25.blh),
+      ustar: Q.has('ustar') ? num('ustar') : (Q.has('u10') ? undefined : MET_AUG25.ustar) },
+    existingFlux: num('flux', 400), onProgress: (t, f) => log(`  progress ${(f * 100).toFixed(0)}% ${t}`),
+  };
+  if (Q.has('nsw')) o.nsw = num('nsw');
+  if (Q.has('wg')) o.wg = num('wg');
+  if (Q.has('nocache')) o.cacheNbr = false;
+  if (Q.has('oclip')) o.outflowClip = num('oclip') !== 0;
+  if (Q.has('side')) o.sideInflowDeg = num('side');
+  if (Q.has('noreinit')) o.metReinit = false;
+  return createLiveSolver(Object.assign(o, extra));
+}
+
+const surfStats = r => {
+  let mx = -Infinity, sum = 0, nan = 0, sp = 0;
+  for (let k = 0; k < r.surf.length; k++) {
+    const t = r.surf[k]; if (!Number.isFinite(t)) { nan++; continue; }
+    if (t > mx) mx = t; sum += t;
+    if (r.u) { const a = r.u[k], b = r.v[k]; if (!Number.isFinite(a) || !Number.isFinite(b)) nan++; else sp += Math.hypot(a, b); }
+  }
+  return { surfMax: mx, surfMean: sum / r.surf.length, windMean: r.u ? sp / r.surf.length : null, nan };
+};
+
+// ------------------------------------------------------------------ tests
+const tests = {
+  async smoke() {
+    const t0 = performance.now();
+    const s = await makeSolver();
+    const tInit = performance.now() - t0;
+    s.setNewCampuses(campusList(Q.get('campus')));
+    await s.step(num('steps', 200));
+    const r = await s.read();
+    const st = await s._dbg.stats();
+    const out = { info: s.info, initMs: tInit, ...surfStats(r), thetaMax: r.thetaMax, heatMW: r.heatMW, simTime: r.simTime, stats: st, campusInfo: s.campusInfo,
+      volNonZero: r.vol.reduce((a, b) => a + (b > 0), 0) };
+    s.destroy();
+    return out;
+  },
+
+  // identical short run for the numba reference: dumps domain + state, steps, outputs
+  async short() {
+    const s = await makeSolver();
+    const dx = s.info.dx, steps = num('steps', 300), pre = num('pre', 0), tag = Q.get('tag') || `short_dx${dx}`;
+    s.setNewCampuses(campusList(Q.get('campus')));
+    if (pre > 0) await s.step(pre);
+    const d = await dumpDomain(tag, s);
+    const st0 = await s._dbg.readState();
+    await dump(`${tag}_f0.bin`, st0.f); await dump(`${tag}_g0.bin`, st0.g);
+    await s._dbg.stepOut(steps);
+    await dump(`${tag}_dbg.bin`, await s._dbg.readDbg());
+    const r = await s.read({ vol: true, wind: true, volMax: 3 });
+    await dump(`${tag}_surf.bin`, r.surf); await dump(`${tag}_u.bin`, r.u); await dump(`${tag}_v.bin`, r.v); await dump(`${tag}_vol.bin`, r.vol);
+    if (Q.has('state1')) { const st1 = await s._dbg.readState(); await dump(`${tag}_f1.bin`, st1.f); await dump(`${tag}_g1.bin`, st1.g); }
+    const out = { tag, steps, pre, info: s.info, inflow: d.inflow, params: d.params, thetaMax: r.thetaMax, heatMW: r.heatMW, ...surfStats(r), campusInfo: s.campusInfo };
+    s.destroy();
+    return out;
+  },
+
+  // long run (25 Aug 2024 at 30 m): spin-up + accumulated mean, time series
+  async long() {
+    const s = await makeSolver();
+    const dx = s.info.dx, dt = s.info.dt, tag = Q.get('tag') || `long_dx${dx}`;
+    s.setNewCampuses(campusList(Q.get('campus')));
+    await dumpDomain(tag, s);
+    const st0 = await s._dbg.readState();
+    await dump(`${tag}_f0.bin`, st0.f); await dump(`${tag}_g0.bin`, st0.g);
+    const nspin = Math.ceil(num('spin', 2200) / dt), navg = Math.ceil(num('avg', 600) / dt);
+    const every = Math.max(1, Math.round(num('sample', 20) / dt));
+    const ts = [];
+    const sample = async () => {
+      const r = await s.read({ vol: false });
+      const st = await s._dbg.stats();
+      ts.push({ step: r.steps, t: r.simTime, ...surfStats(r), thetaMax: st.thetaMax, heatMJ: st.heatContentMJ, ke: st.keMean, nonFinite: st.nonFinite });
+    };
+    const t0 = performance.now();
+    await sample();
+    for (let done = 0; done < nspin;) { const m = Math.min(every, nspin - done); await s.step(m); done += m; await sample(); }
+    await s._dbg.clearDbg();
+    // time-mean of the read() surface fields (sampled every `every` steps) alongside the per-step accumulation
+    const NXY = s.info.nx * s.info.ny, sm = new Float64Array(3 * NXY); let ns = 0;
+    for (let done = 0; done < navg;) {
+      const m = Math.min(every, navg - done); await s._dbg.stepAcc(m); done += m;
+      const r = await s.read({ vol: false });
+      for (let k = 0; k < NXY; k++) { sm[k] += r.surf[k]; sm[NXY + k] += r.u[k]; sm[2 * NXY + k] += r.v[k]; }
+      ns++;
+      const st = await s._dbg.stats();
+      ts.push({ step: r.steps, t: r.simTime, ...surfStats(r), thetaMax: st.thetaMax, heatMJ: st.heatContentMJ, ke: st.keMean, nonFinite: st.nonFinite });
+    }
+    const wall = (performance.now() - t0) / 1000;
+    await dump(`${tag}_acc.bin`, await s._dbg.readDbg());
+    await dump(`${tag}_surfmean.bin`, Float32Array.from(sm, x => x / ns));
+    await dump(`${tag}_ts.json`, ts);
+    const out = { tag, nspin, navg, dt, every, nsamples: ns, wall_s: wall, info: s.info, final: ts[ts.length - 1] };
+    s.destroy();
+    return out;
+  },
+
+  // NaN / blow-up check over a matrix of UI settings
+  async stab() {
+    const dxs = (Q.get('dxs') || '20,30,40').split(',').map(Number), nsteps = num('steps', 10000);
+    const combos = [
+      { name: 'calm-1ms-convective', met: { u10: 1, dirFrom: 300, wstar: 2.5, blh: 2000 }, flux: 800, campus: 'AB' },
+      { name: 'strong-8ms-neutral', met: { u10: 8, dirFrom: 45, wstar: 0, blh: 500 }, flux: 800, campus: 'C' },
+      { name: 'mid-4ms-south', met: { u10: 4, dirFrom: 180, wstar: 1.2, blh: 1200 }, flux: 0, campus: 'A' },
+      { name: 'calm-1ms-neutral', met: { u10: 1, dirFrom: 210, wstar: 0, blh: 500 }, flux: 800, campus: 'AB' },
+      { name: 'axis-270-2ms', met: { u10: 2, dirFrom: 270, wstar: 0.5, blh: 700 }, flux: 400, campus: 'BC' },
+      { name: 'switching', met: { u10: 3.09, dirFrom: 210, wstar: 1.67, blh: 903 }, flux: 400, campus: '',
+        changes: { 2500: { met: { u10: 8, dirFrom: 90 }, campus: 'AB' }, 5000: { met: { u10: 1, dirFrom: 315, wstar: 2.5, blh: 2000 }, flux: 800 },
+          7500: { met: { u10: 5, dirFrom: 0, wstar: 0, blh: 500 }, campus: '' } } },
+    ].filter(c => !Q.get('only') || Q.get('only').split(',').includes(c.name));
+    const res = [];
+    for (const dx of dxs) for (const c of combos) {
+      const t0 = performance.now();
+      const s = await makeSolver({ dx, met: c.met, existingFlux: c.flux, onProgress: () => {} });
+      s.setNewCampuses(campusList(c.campus));
+      const rec = { dx, name: c.name, ok: true, checks: [] };
+      for (let done = 0; done < nsteps;) {
+        const ch = c.changes && c.changes[done];
+        if (ch) { if (ch.met) s.setMet(ch.met); if (ch.flux !== undefined) s.setExistingFlux(ch.flux); if (ch.campus !== undefined) s.setNewCampuses(campusList(ch.campus)); }
+        const nxt = Math.min(nsteps, done + 500, ...Object.keys(c.changes || {}).map(Number).filter(k => k > done));
+        await s.step(nxt - done); done = nxt;
+        if (done % 1000 === 0 || done === nsteps) {
+          const r = await s.read({ vol: false }); const ss = surfStats(r); const st = await s._dbg.stats();
+          let umax = 0; for (let k = 0; k < r.u.length; k++) umax = Math.max(umax, Math.hypot(r.u[k], r.v[k]));
+          rec.checks.push({ step: done, t: +r.simTime.toFixed(1), surfMax: +ss.surfMax.toFixed(3), wind: +(ss.windMean || 0).toFixed(3), umax: +umax.toFixed(2), thetaMax: +st.thetaMax.toFixed(3), heatMJ: +st.heatContentMJ.toFixed(1), umaxDomain: +st.umax.toFixed(2), nonFinite: st.nonFinite + ss.nan });
+          rec.umaxDomain = Math.max(rec.umaxDomain || 0, st.umax);
+          if (st.nonFinite + ss.nan > 0 || !(ss.surfMax < 1e3) || !(umax < 100) || !(st.umax < num('ulim', 25))) { rec.ok = false; rec.failAt = done; break; }
+        }
+      }
+      rec.wall_s = +((performance.now() - t0) / 1000).toFixed(1); rec.simTime = s.simTime; rec.dt = s.info.dt;
+      log(JSON.stringify({ dx, name: c.name, ok: rec.ok, failAt: rec.failAt, umaxDomain: +(rec.umaxDomain || 0).toFixed(2), last: rec.checks[rec.checks.length - 1], wall_s: rec.wall_s }));
+      res.push(rec);
+      s.destroy();
+    }
+    return { ok: res.every(r => r.ok), results: res };
+  },
+
+  async bench() {
+    const dxs = (Q.get('dxs') || '20,30,40').split(',').map(Number), wgs = (Q.get('wgs') || '64,128,256').split(',').map(Number);
+    const n = num('steps', 300), res = [];
+    for (const dx of dxs) for (const wg of wgs) {
+      const s = await makeSolver({ dx, wg, onProgress: () => {} });
+      s.setNewCampuses(campusList(Q.get('campus') || 'A'));
+      const v = [];
+      for (let r = 0; r < 4; r++) v.push(await s.benchmark(n));
+      v.sort((a, b) => a - b);
+      const rec = { dx, wg, nx: s.info.nx, nz: s.info.nz, cells: s.info.nCells, fluid: s.info.nFluid, mlups: v, median: (v[1] + v[2]) / 2,
+        msPerStep: s.info.nCells / ((v[1] + v[2]) / 2) / 1e3, adapter: s.info.adapter };
+      log(JSON.stringify(rec));
+      res.push(rec);
+      s.destroy();
+    }
+    return { ok: true, results: res };
+  },
+
+  // wind-direction scan: first step at which the near-surface wind goes spurious (> 3x the inflow) or non-finite
+  async dirscan() {
+    const dirs = (Q.get('dirs') || '180,181,183,185,190,200').split(',').map(Number), nsteps = num('steps', 8000), res = [];
+    const side = Q.has('side') ? num('side') : undefined;
+    for (const dir of dirs) {
+      const met = { u10: num('u10', 4), dirFrom: dir, wstar: num('wstar', 1.2), blh: num('blh', 1200) };
+      const s = await makeSolver({ met, existingFlux: num('flux', 400), sideInflowDeg: side, onProgress: () => {} });
+      s.setNewCampuses(campusList(Q.get('campus') || ''));
+      const rec = { dir, inflow: { ...s._dbg.domain().inflow }, failAt: null, umaxSeen: 0 };
+      const lim = 3 * met.u10 * Math.pow(Math.min(0.5 * s.info.dx, 150) / 10, 0.14);
+      for (let done = 0; done < nsteps;) {
+        await s.step(500); done += 500;
+        const r = await s.read({ vol: false });
+        let umax = 0, bad = 0;
+        for (let k = 0; k < r.u.length; k++) { const a = Math.hypot(r.u[k], r.v[k]); if (!Number.isFinite(a)) bad++; else umax = Math.max(umax, a); }
+        rec.umaxSeen = Math.max(rec.umaxSeen, umax);
+        if (bad || umax > Math.max(lim, 4)) { rec.failAt = done; rec.umaxAtFail = bad ? 'NaN' : +umax.toFixed(1); break; }
+      }
+      rec.steps = nsteps; rec.simTime = +s.simTime.toFixed(0); rec.umaxSeen = +rec.umaxSeen.toFixed(2);
+      log(JSON.stringify(rec));
+      res.push(rec);
+      s.destroy();
+    }
+    return { ok: true, dx: num('dx', 30), u10: num('u10', 4), side: side ?? 0, results: res };
+  },
+
+  // met transitions: cold start at d0/u0, spin `pre` s, change to d1/u1 (abrupt, or ramped by the test over `ramp` s),
+  // track the domain-wide max speed. cases: "d0:u0>d1:u1[:ramp]" separated by commas
+  async switchscan() {
+    const cases = (Q.get('cases') || '210:3.09>240:3.09').split(',');
+    const pre = num('pre', 600), post = num('post', 2000), res = [];
+    for (const cs of cases) {
+      const [a, b] = cs.split('>'); const [d0, u0] = a.split(':').map(Number); const [d1, u1, ramp = 0] = b.split(':').map(Number);
+      const s = await makeSolver({ met: { u10: u0, dirFrom: d0, wstar: num('wstar', 1.67), blh: num('blh', 903) }, onProgress: () => {} });
+      s.setNewCampuses(campusList(Q.get('campus') || ''));
+      const dt = s.info.dt, chunk = Math.max(1, Math.round(num('chunk', 5) / dt));
+      await s.step(Math.round(pre / dt));
+      const st0 = await s._dbg.stats();
+      const Uref = 1.461 * Math.max(u0, u1);
+      const rec = { case: cs, dx: s.info.dx, umaxBefore: +st0.umax.toFixed(2), umaxAfter: 0, worst: 0, status: 'ok' };
+      const nPost = Math.round(post / dt), nRamp = Math.round(ramp / dt), dd = ((d1 - d0 + 540) % 360) - 180;
+      for (let done = 0; done < nPost;) {
+        if (nRamp > 0 && done <= nRamp) { const f = Math.min(1, done / nRamp); s.setMet({ u10: u0 + (u1 - u0) * f, dirFrom: d0 + dd * f }); }
+        else if (done === 0) s.setMet({ u10: u1, dirFrom: d1 });
+        await s.step(chunk); done += chunk;
+        if (done % (chunk * 10) < chunk) {
+          const st = await s._dbg.stats();
+          if (st.nonFinite > 0) { rec.status = `NaN at +${(done * dt).toFixed(0)} s`; break; }
+          rec.worst = Math.max(rec.worst, st.umax);
+          if (st.umax > (Q.has("ulim") ? num("ulim") : 2.0 * Uref)) { rec.status = `spurious ${st.umax.toFixed(1)} m/s at +${(done * dt).toFixed(0)} s`; break; }
+        }
+      }
+      const st1 = await s._dbg.stats();
+      rec.umaxAfter = +st1.umax.toFixed(2); rec.worst = +rec.worst.toFixed(2); rec.ratio = +(rec.worst / Uref).toFixed(2);
+      log(JSON.stringify(rec));
+      res.push(rec);
+      s.destroy();
+    }
+    return { ok: true, results: res };
+  },
+
+  // interface behaviour and edge cases
+  async api() {
+    const out = {}, expectReject = async (p) => { try { await p; return 'resolved (unexpected)'; } catch (e) { return 'rejected: ' + e.message; } };
+    out.badDx = await expectReject(makeSolver({ dx: 25 }));
+    out.badU10Max = await expectReject(makeSolver({ u10Max: 0 }));
+    const dx = num('dx', 20);
+    const s = await makeSolver({ dx, onProgress: () => {} });
+    out.info = s.info;
+    await s.step(300);
+    const r0 = await s.read({ vol: false, wind: false });
+    out.readNoVolNoWind = { surf: r0.surf.length, u: r0.u, v: r0.v, vol: r0.vol, thetaMax: r0.thetaMax, simTime: r0.simTime };
+    // 8 concurrent reads while stepping
+    const ps = []; for (let k = 0; k < 8; k++) { ps.push(s.read()); s.step(5); }
+    const rs = await Promise.all(ps);
+    out.concurrentReads = rs.map(r => +r.simTime.toFixed(2));
+    // campuses: add (solid at 20 m), run, remove, run
+    s.setNewCampuses([CAMPUSES.A, CAMPUSES.B]);
+    const nf1 = s.info.nFluid, h1 = s.info.heatExistingMW, rA = await s.read();
+    await s.step(1000);
+    const stA = await s._dbg.stats();
+    s.setNewCampuses([]);
+    const nf2 = s.info.nFluid;
+    await s.step(1000);
+    const stB = await s._dbg.stats(), rB = await s.read();
+    out.campuses = { nFluidWith: nf1, nFluidWithout: nf2, heatMWwith: rA.heatMW, heatMWwithout: rB.heatMW, existingMW: h1, campusInfo: s.campusInfo,
+      nonFinite: stA.nonFinite + stB.nonFinite, umaxDomain: Math.max(stA.umax, stB.umax) };
+    // flux and resets
+    s.setExistingFlux(800); out.heatExistingMW800 = s.info.heatExistingMW;
+    s.resetHeat(); const rH = await s.read();
+    out.afterResetHeat = { simTime: rH.simTime, thetaMax: rH.thetaMax, windMean: surfStats(rH).windMean };
+    await s.step(200); s.resetFlow(); const rF = await s.read();
+    out.afterResetFlow = { simTime: rF.simTime, thetaMax: rF.thetaMax, windMean: surfStats(rF).windMean };
+    // a big turn re-initialises the flow, a small one does not
+    s.setMet({ u10: 4, dirFrom: 230 }); const n1 = s.flowReinits || 0;
+    s.setMet({ u10: 4, dirFrom: 30 }); const n2 = s.flowReinits || 0;
+    out.flowReinits = { afterSmallTurn: n1, afterBigTurn: n2 };
+    s.destroy();
+    out.afterDestroy = await expectReject(Promise.resolve().then(() => s.step(1)));
+    // caller-supplied device
+    const ad = await navigator.gpu.requestAdapter();
+    const dev = await ad.requestDevice({ requiredLimits: { maxStorageBufferBindingSize: ad.limits.maxStorageBufferBindingSize, maxBufferSize: ad.limits.maxBufferSize } });
+    const s2 = await makeSolver({ dx: 40, device: dev, onProgress: () => {} });
+    await s2.step(100); const r2 = await s2.read();
+    out.ownDevice = { ok: Number.isFinite(r2.thetaMax), adapter: s2.info.adapter, simTime: r2.simTime };
+    s2.destroy();
+    out.deviceStillUsable = await dev.queue.onSubmittedWorkDone().then(() => 'yes');
+    dev.destroy();
+    return out;
+  },
+
+  // read() latency and its cost while stepping continuously
+  async readlat() {
+    const s = await makeSolver();
+    s.setNewCampuses(campusList('A'));
+    await s.step(200);
+    const lat = [];
+    for (let k = 0; k < 20; k++) { const t0 = performance.now(); await s.read(); lat.push(performance.now() - t0); }
+    // stepping alone for ~3 s, then stepping with read() every 100 ms
+    const run = async (withReads, ms) => {
+      const t0 = performance.now(); let steps = 0, reads = 0, lastRead = t0, pend = [];
+      while (performance.now() - t0 < ms) {
+        await s.step(20); steps += 20;
+        if (withReads && performance.now() - lastRead > 100) { lastRead = performance.now(); pend.push(s.read().then(() => reads++)); }
+      }
+      await Promise.all(pend);
+      return { stepsPerSec: steps / ((performance.now() - t0) / 1000), reads };
+    };
+    const a = await run(false, 3000), b = await run(true, 3000);
+    lat.sort((x, y) => x - y);
+    const out = { dx: s.info.dx, readLatencyMs: { median: lat[10], max: lat[19], min: lat[0] }, steppingOnly: a, steppingWithReads10Hz: b };
+    s.destroy();
+    return out;
+  },
+
+  // flow / heat settling from a cold start (resetFlow, heat on from t = 0)
+  async spinup() {
+    const s = await makeSolver();
+    const dt = s.info.dt, T = num('T', 3600), every = Math.max(1, Math.round(num('sample', 10) / dt)), ts = [];
+    s.setNewCampuses(campusList(Q.get('campus')));
+    const t0 = performance.now();
+    for (let done = 0; ; ) {
+      const r = await s.read({ vol: false }); const st = await s._dbg.stats();
+      ts.push({ step: r.steps, t: r.simTime, ...surfStats(r), heatMJ: st.heatContentMJ, ke: st.keMean, thetaMax: st.thetaMax, nonFinite: st.nonFinite });
+      if (done * dt >= T) break;
+      await s.step(every); done += every;
+    }
+    const tag = Q.get('tag') || `spinup_dx${s.info.dx}`;
+    await dump(`${tag}_ts.json`, ts);
+    const out = { tag, dt, every, n: ts.length, wall_s: (performance.now() - t0) / 1000, info: s.info };
+    s.destroy();
+    return out;
+  },
+};
+
+(async () => {
+  const name = Q.get('test') || 'smoke';
+  try {
+    if (!tests[name]) throw new Error('unknown test ' + name);
+    log(`test ${name} ${location.search}`);
+    const out = await tests[name]();
+    window.__result = { ok: out.ok !== false, test: name, ...out };
+  } catch (e) {
+    log('ERROR', e && e.stack || String(e));
+    window.__result = { ok: false, test: name, error: String(e && e.message || e), stack: e && e.stack };
+  }
+})();
+</script>
+</body>
+</html>
